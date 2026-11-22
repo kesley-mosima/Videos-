@@ -16,12 +16,12 @@
 
 ## 2. Contexto (5–15 s)
 
-> Quem tem uma dívida em execução / muitas vezes tem a conta bloqueada pelo juiz. /
+> Quem está sendo cobrado na Justiça / muitas vezes tem a conta bloqueada pelo juiz. /
 > A pergunta é: / esse dinheiro pode ser tomado?
 
 ## 3. A regra — o que está protegido (15–40 s)
 
-> A Corte Especial do STJ fixou: / é **impenhorável** a quantia de até **quarenta salários mínimos**. /
+> O STJ decidiu: / até **quarenta salários mínimos** / **não podem** ser penhorados, / ou seja, / não podem ser tomados para pagar a dívida. /
 > Primeiro: / na **poupança**, / mesmo que você use a poupança **como se fosse conta corrente**. /
 > Segundo: / em **dinheiro vivo**, / em **conta corrente** / ou em **investimento**, / desde que funcione como uma **reserva de emergência** / para você ou sua família.
 
@@ -30,7 +30,7 @@
 ## 4. As exceções — o que NÃO está protegido (40–60 s)
 
 > Mas atenção: / a proteção **não vale** para dois casos. /
-> Um: / investimentos **especulativos** e de **alto risco**. /
+> Um: / investimentos **de alto risco**, / feitos para tentar ganhar mais, / e não para guardar. /
 > Dois: / as **sobras** que ficam na conta corrente de **meses anteriores**. /
 > Por exemplo: / o salário é protegido. / Mas o que sobrou do salário do mês passado / e ficou parado na conta corrente / **pode** ser penhorado.
 
