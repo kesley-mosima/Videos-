@@ -317,7 +317,8 @@ def montar_cenas():
     C.append((t, fundo(BRANCO), [
         El(lg, 540, 680, t, "pop", 0.6),
         El(texto("Decisões do STJ\nexplicadas de forma simples", ("Regular", 50), CINZA), 540, 1020, t + 0.4, "fade", 0.4),
-        El(texto("mosima.com.br", ("Bold", 56), COBRE), 540, 1170, t + 0.7, "subir", 0.4),
+        El(texto("@mosimaadv", ("Black", 72), COBRE), 540, 1170, t + 0.6, "subir", 0.4, loop="pulso", amp=0.03),
+        El(texto("mosima.com.br", ("Regular", 38), CINZA), 540, 1250, t + 0.9, "fade", 0.4),
     ]))
     return C
 

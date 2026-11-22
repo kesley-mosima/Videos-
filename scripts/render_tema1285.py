@@ -16,7 +16,8 @@ LOGO = Image.open(f"{IV}/logo-completo.png").convert("RGBA")
 
 # ---------- 1. Cortes (tempos do áudio original, em segundos) ----------
 # Remove: "A pergunta é, esse dinheiro pode ser devolvido?", as três regravações e o "se" solto.
-CORTES = [(2.45, 14.40), (25.30, 59.29), (77.40, 120.45), (129.10, 133.30)]
+# Também remove "os dinheiros que estiverem" (concordância): fica "Primeiro, na poupança, ...".
+CORTES = [(2.45, 14.40), (25.30, 36.55), (37.59, 59.29), (77.40, 120.45), (129.10, 133.30)]
 
 # Enxugamento de pausas: dentro dos cortes, pausas longas entre palavras viram ~0,28 s.
 FOLGA, PAUSA_MAX, DUR_ALVO = 0.12, 0.30, 74.5
@@ -131,7 +132,7 @@ def cena(nome, p):
         d = ImageDraw.Draw(im)
         lg = LOGO.resize((820, int(820 * LOGO.height / LOGO.width))); im.paste(lg, ((W - 820) // 2, 520))
         centro(d, ["Decisões do STJ", "explicadas de forma simples"], 1000, F("Regular", 50), CINZA)
-        centro(d, ["mosima.com.br"], 1150, F("Bold", 54), COBRE)
+        centro(d, ["@mosimaadv"], 1150, F("Black", 64), COBRE)
         d.rectangle([0, H - 60, W, H], fill=VERDE)
         return im
     d = base(im, fundo)
