@@ -348,12 +348,7 @@ def main():
     de = float(sys.argv[sys.argv.index("--de") + 1]) if "--de" in sys.argv else 0.0
     ate = float(sys.argv[sys.argv.index("--ate") + 1]) if "--ate" in sys.argv else R.DUR
     wav = f"{saida}/narracao-editada.wav"
-    if not os.path.exists(wav):
-        filtros, rot = [], []
-        for k, (s, e) in enumerate(R.CORTES):
-            filtros.append(f"[0:a]atrim={s}:{e},asetpts=PTS-STARTPTS,afade=t=in:d=0.02,afade=t=out:st={e - s - 0.04:.3f}:d=0.04[a{k}]"); rot.append(f"[a{k}]")
-        filtros.append("".join(rot) + f"concat=n={len(R.CORTES)}:v=0:a=1,highpass=f=80,loudnorm=I=-14:TP=-1.5:LRA=11[out]")
-        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", audio, "-filter_complex", ";".join(filtros), "-map", "[out]", "-ar", "48000", "-ac", "1", wav], check=True)
+    R.gerar_audio(audio, wav)
     cenas = montar_cenas()
     nome = f"{saida}/tema-1285-motion{'' if (de == 0 and ate >= R.DUR) else '-amostra'}.mp4"
     ff = subprocess.Popen(["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",

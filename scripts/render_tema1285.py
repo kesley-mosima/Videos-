@@ -18,21 +18,59 @@ LOGO = Image.open(f"{IV}/logo-completo.png").convert("RGBA")
 # Remove: "A pergunta é, esse dinheiro pode ser devolvido?", as três regravações e o "se" solto.
 CORTES = [(2.45, 14.40), (25.30, 59.29), (77.40, 120.45), (129.10, 133.30)]
 
+# Enxugamento de pausas: dentro dos cortes, pausas longas entre palavras viram ~0,28 s.
+FOLGA, PAUSA_MAX, DUR_ALVO = 0.12, 0.30, 74.5
+_linhas = list(csv.DictReader(open(f"{PROJ}/narracao-palavras.csv", encoding="utf-8")))
+def _dentro(s, e): return any(a <= s and e <= b for a, b in CORTES)
+_pal = [(float(r["start"]), float(r["end"])) for r in _linhas if _dentro(float(r["start"]), float(r["end"]))]
+TRECHOS = []
+for s, e in _pal:
+    s0, e0 = s - FOLGA, e + FOLGA
+    if TRECHOS and s - TRECHOS[-1][1] + FOLGA <= PAUSA_MAX: TRECHOS[-1][1] = e0
+    else: TRECHOS.append([s0, e0])
+def _corte(x): return next(c for c in CORTES if c[0] - FOLGA <= x <= c[1] + FOLGA)
+TRECHOS = [(max(a, _corte(a + FOLGA)[0]), min(b, _corte(b - FOLGA)[1])) for a, b in TRECHOS]
+_DUR_BRUTA = sum(e - s for s, e in TRECHOS)
+VELOCIDADE = max(1.0, _DUR_BRUTA / DUR_ALVO)
+
 def novo_t(t):
+    """Tempo do áudio original -> tempo no vídeo final (pausas enxugadas e fala acelerada).
+    Instantes dentro de pausas removidas encostam no início do trecho seguinte."""
     acc = 0.0
-    for s, e in CORTES:
-        if s <= t <= e: return acc + (t - s)
+    for s, e in TRECHOS:
+        if t < s: return acc / VELOCIDADE
+        if t <= e: return (acc + t - s) / VELOCIDADE
         acc += e - s
-    return None
-DUR = sum(e - s for s, e in CORTES)
+    return acc / VELOCIDADE
+DUR = _DUR_BRUTA / VELOCIDADE
+
+def gerar_audio(audio, wav):
+    """Corta, enxuga pausas, limpa (ruído, sibilância, dinâmica), acelera e normaliza (2 passadas, -14 LUFS)."""
+    import json
+    filtros, rot = [], []
+    for k, (s, e) in enumerate(TRECHOS):
+        filtros.append(f"[0:a]atrim={s:.3f}:{e:.3f},asetpts=PTS-STARTPTS,afade=t=in:d=0.012,afade=t=out:st={e - s - 0.02:.3f}:d=0.02[a{k}]")
+        rot.append(f"[a{k}]")
+    limpeza = ("highpass=f=85,lowpass=f=15000,afftdn=nr=12:nf=-42:tn=1,deesser=i=0.4,"
+               "equalizer=f=250:t=q:w=1.2:g=-2,equalizer=f=3500:t=q:w=1.5:g=2,"
+               "acompressor=threshold=-21dB:ratio=3:attack=6:release=90:makeup=2,"
+               f"atempo={VELOCIDADE:.4f}")
+    base = ";".join(filtros) + ";" + "".join(rot) + f"concat=n={len(TRECHOS)}:v=0:a=1,pan=mono|c0=0.5*c0+0.5*c1,{limpeza}"
+    r = subprocess.run(["ffmpeg", "-hide_banner", "-i", audio, "-filter_complex", base + ",loudnorm=I=-14:TP=-1.5:LRA=9:print_format=json[out]",
+                        "-map", "[out]", "-f", "null", "-"], capture_output=True, text=True, check=True)
+    m = json.loads(r.stderr[r.stderr.rindex("{"):r.stderr.rindex("}") + 1])
+    ganho = -14.0 - float(m["input_i"])
+    ln = f"volume={ganho:.2f}dB,alimiter=limit=0.84:attack=3:release=50:level=false"
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", audio, "-filter_complex", base + "," + ln + "[out]",
+                    "-map", "[out]", "-ar", "48000", "-ac", "1", wav], check=True)
 
 # ---------- 2. Palavras e legendas ----------
 CORRECOES = {"StJ": "STJ", "C.": "Se", "2.": "Dois:", "Há": "as"}
 palavras = []
-for r in csv.DictReader(open(f"{PROJ}/narracao-palavras.csv", encoding="utf-8")):
+for r in _linhas:
     s, e = float(r["start"]), float(r["end"])
+    if not _dentro(s, e): continue
     ns, ne = novo_t(s), novo_t(e)
-    if ns is None or ne is None: continue
     txt = CORRECOES.get(r["text"], r["text"])
     if r["index"] == "140": txt = "o"  # "Se, o dinheiro estiver..."
     palavras.append((ns, ne, txt))
@@ -48,7 +86,7 @@ if atual: grupos.append(atual)
 legendas = []
 for i, g in enumerate(grupos):
     ini = g[0][0]
-    fim = g[-1][1] + 0.5
+    fim = g[-1][1] + 0.4
     if i + 1 < len(grupos): fim = min(fim, grupos[i + 1][0][0])
     texto = " ".join(x[2] for x in g).rstrip(".,:")
     legendas.append((ini, fim, texto))
