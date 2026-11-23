@@ -1,0 +1,86 @@
+{
+  "nome": "tema-1285",
+  "reusar_base": true,
+  "video": "/root/.claude/uploads/09907eb0-a14d-50b6-9c60-6dd24dc12e24/7811cd25-WhatsApp_Video_2026-11-23_at_10.45.57.mp4",
+  "palavras_csv": "palavras.csv",
+  "saida": "saida",
+  "handle": "@mosimaadv",
+  "frase_final": "Decisões do STJ explicadas de forma simples",
+
+  "cortes": [[1.15, 82.75], [112.15, 117.45]],
+  "duracao_alvo": 74,
+  "pausa_max": 0.30,
+  "vel_max": 1.08,
+  "cauda": 1.6,
+  "correcoes": {"StJ": "STJ", "saudar": "saldar"},
+
+  "capa": {
+    "instante": 110.5,
+    "selo": "TEMA 1285 · STJ",
+    "linha1": "COBRANDO OU",
+    "linha2": "SENDO COBRADO?",
+    "subtitulo": "O que o STJ diz que pode ser penhorado",
+    "nome": "Kesley de Moraes Silva",
+    "registro": "OAB/SC nº 30.490  ·  Moraes Silva & Massimino Advogados"
+  },
+
+  "blocos": [
+    {"de": 1.15, "ate": 14.25, "modo": "cheio", "elementos": [
+      {"tipo": "titulo", "l1": "COBRANDO OU", "l2": "SENDO COBRADO?", "t": 1.2, "fim": 8.3},
+      {"tipo": "titulo", "l1": "O QUE PODE SER", "l2": "PENHORADO", "cor": "branco", "t": 8.4}
+    ]},
+    {"de": 14.25, "ate": 25.5, "modo": "split", "elementos": [
+      {"tipo": "chip", "texto": "TESE FIXADA · STJ", "t": 14.3, "y": 180},
+      {"tipo": "contador", "ate": 40, "rotulo": "ATÉ", "t": 15.85, "t2": 16.9, "y": 205},
+      {"tipo": "texto", "estilo": "titulo", "texto": "SALÁRIOS MÍNIMOS", "t": 16.5, "y": 545},
+      {"tipo": "icone", "nome": "escudo", "t": 18.4, "x": 270, "y": 690},
+      {"tipo": "texto", "estilo": "destaque", "texto": "IMPENHORÁVEIS", "t": 18.5, "x": 600, "y": 680, "anim": "dir"},
+      {"tipo": "texto", "estilo": "nota", "texto": "se funcionarem como reserva", "t": 22.9, "y": 790, "anim": "fade"}
+    ]},
+    {"de": 25.5, "ate": 33.3, "modo": "split", "elementos": [
+      {"tipo": "chip", "texto": "SEJA ONDE ESTIVER", "t": 25.6, "y": 180},
+      {"tipo": "tile", "rotulo": "Conta", "icone": "grafico_estavel", "t": 26.0, "x": 200, "y": 420},
+      {"tipo": "tile", "rotulo": "Investimento", "icone": "grafico_risco", "t": 26.3, "x": 540, "y": 420},
+      {"tipo": "tile", "rotulo": "Dinheiro vivo", "icone": "cedulas", "t": 26.6, "x": 880, "y": 420},
+      {"tipo": "selo", "ok": true, "t": 28.3, "x": 315, "y": 300},
+      {"tipo": "selo", "ok": true, "t": 28.45, "x": 655, "y": 300},
+      {"tipo": "selo", "ok": true, "t": 28.6, "x": 995, "y": 300},
+      {"tipo": "texto", "estilo": "destaque", "texto": "RESERVA DE EMERGÊNCIA", "t": 28.2, "y": 640},
+      {"tipo": "texto", "estilo": "nota", "texto": "= não paga a dívida", "t": 30.0, "y": 730, "anim": "fade"}
+    ]},
+    {"de": 33.3, "ate": 43.6, "modo": "split", "elementos": [
+      {"tipo": "chip", "texto": "POUPANÇA", "t": 33.4, "y": 180},
+      {"tipo": "icone", "nome": "cofrinho", "t": 35.0, "x": 190, "y": 470},
+      {"tipo": "linha", "texto": "Depósito", "valor": "+ R$", "t": 38.3, "x": 700, "y": 330},
+      {"tipo": "linha", "texto": "Pagamento", "valor": "− R$", "positivo": false, "t": 38.8, "x": 700, "y": 415},
+      {"tipo": "linha", "texto": "Pix recebido", "valor": "+ R$", "t": 39.4, "x": 700, "y": 500},
+      {"tipo": "linha", "texto": "Boleto", "valor": "− R$", "positivo": false, "t": 40.0, "x": 700, "y": 585},
+      {"tipo": "selo", "ok": true, "r": 40, "t": 41.4, "x": 300, "y": 560},
+      {"tipo": "texto", "estilo": "corpo", "texto": "protegida mesmo com movimentação", "t": 41.3, "y": 730, "anim": "fade"}
+    ]},
+    {"de": 43.6, "ate": 54.5, "modo": "cheio", "elementos": [
+      {"tipo": "titulo", "l1": "MAS ATENÇÃO:", "l2": "2 EXCEÇÕES", "t": 47.8}
+    ]},
+    {"de": 54.5, "ate": 67.3, "modo": "split", "elementos": [
+      {"tipo": "chip", "texto": "EXCEÇÃO 1", "t": 54.6, "y": 180},
+      {"tipo": "icone", "nome": "grafico_volatil", "t": 55.3, "y": 410, "dur": 1.6},
+      {"tipo": "texto", "estilo": "titulo", "texto": "INVESTIMENTO DE ALTO RISCO", "tam": 50, "t": 58.8, "y": 620},
+      {"tipo": "selo", "ok": false, "r": 36, "t": 60.4, "x": 170, "y": 720},
+      {"tipo": "texto", "estilo": "alerta", "texto": "pode ser penhorado", "t": 60.5, "x": 470, "y": 720, "anim": "dir"},
+      {"tipo": "chip", "texto": "CONCEITO ABERTO", "cor": "claro", "t": 62.3, "y": 805, "anim": "pop"}
+    ]},
+    {"de": 67.3, "ate": 82.8, "modo": "split", "elementos": [
+      {"tipo": "chip", "texto": "EXCEÇÃO 2", "t": 67.4, "y": 180},
+      {"tipo": "texto", "estilo": "titulo", "texto": "SOBRAS DE VALORES PROTEGIDOS", "tam": 46, "t": 70.8, "y": 285},
+      {"tipo": "coluna", "titulo": "MÊS 1", "texto": "salário: protegido", "cor": "positivo", "t": 76.3, "x": 250, "y": 430},
+      {"tipo": "icone", "nome": "seta", "t": 77.6, "y": 430, "anim": "esq", "dur": 0.35},
+      {"tipo": "coluna", "titulo": "MÊS 2", "texto": "o que sobrou", "cor": "negativo", "t": 78.0, "x": 830, "y": 430},
+      {"tipo": "moedas", "n": 3, "t": 78.5, "x": 770, "y": 560},
+      {"tipo": "selo", "ok": false, "r": 40, "t": 81.0, "y": 680},
+      {"tipo": "texto", "estilo": "destaque", "texto": "PODE SER PENHORADA", "tam": 50, "t": 81.1, "y": 780}
+    ]},
+    {"de": 112.0, "ate": "fim", "modo": "cheio", "elementos": [
+      {"tipo": "titulo", "l1": "SIGA", "l2": "@mosimaadv", "t": 115.8}
+    ]}
+  ]
+}
