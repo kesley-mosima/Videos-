@@ -31,8 +31,9 @@ def main():
     d.rounded_rectangle([340, 1010, 740, 1080], 16, fill=COBRE)
     d.text((540, 1045), "TEMA 1285 · STJ", font=F("Black", 40), fill=BRANCO, anchor="mm")
     y = 1110
-    for linha in ["SEU DINHEIRO PODE", "SER PENHORADO?"]:
-        d.text((540, y), linha, font=F("Black", 92), fill=BRANCO, anchor="mt"); y += 104
+    for linha, cor in [("COBRANDO OU", BRANCO), ("SENDO COBRADO?", COBRE)]:
+        d.text((540, y), linha, font=F("Black", 96), fill=cor, anchor="mt"); y += 106
+    d.text((540, y + 4), "O que o STJ diz que pode ser penhorado", font=F("Regular", 40), fill=BRANCO, anchor="mt"); y += 56
     d.rectangle([440, y + 22, 640, y + 28], fill=COBRE)
     d.text((540, y + 60), "Kesley de Moraes Silva", font=F("Bold", 46), fill=BRANCO, anchor="mt")
     d.text((540, y + 118), "OAB/SC nº 30.490  ·  Moraes Silva & Massimino Advogados", font=F("Regular", 30), fill="#E9D3C6", anchor="mt")
