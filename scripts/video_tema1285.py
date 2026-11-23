@@ -6,7 +6,13 @@ import csv, json, math, os, subprocess, sys
 from PIL import Image, ImageDraw
 sys.path.insert(0, os.path.dirname(__file__))
 import motion_tema1285 as M
-from motion_tema1285 import El, texto, compor, fundo, clamp, out_cubic, out_back
+from motion_tema1285 import El, texto, compor, clamp, out_cubic, out_back
+
+def fundo(cor):
+    """Fundo das inserções: sem rodapé fixo com o número do tema."""
+    im = M.fundo(cor); d = ImageDraw.Draw(im)
+    d.rectangle([0, 1400, W, 1480], fill=cor)
+    return im
 from render_tema1285 import F, VERDE, VERDE_ESC, COBRE, CINZA, BRANCO, AREIA, LOGO
 
 W, H, FPS = 1080, 1920, 30
@@ -117,8 +123,6 @@ def montar():
     moeda, sel_ok, sel_x = M.spr_moeda(), M.spr_selo(True), M.spr_selo(False)
     # Sobreposições sobre o rosto (tempo editado)
     sobre = [
-        El(faixa_nome(), 75 + 450, 1150, T(1.3), "esq", 0.5, fim=T(8.4)),
-        El(caixa("TEMA 1285 · STJ", ("Black", 46), BRANCO, COBRE), 540, 215, T(1.3), "pop", 0.45, fim=T(13.7)),
         El(caixa("Reserva de emergência\nem qualquer lugar", ("Bold", 44), VERDE, (244, 239, 234, 240), icone="ok"), 540, 1150, T(25.8), "pop", 0.45, fim=T(33.3)),
         El(caixa("2 EXCEÇÕES", ("Black", 54), BRANCO, COBRE, icone="!"), 540, 1150, T(47.8), "pop", 0.45, fim=T(54.5), loop="pulso", amp=0.03),
         El(caixa("Sobra do salário de um\nmês para o outro: PENHORÁVEL", ("Bold", 42), BRANCO, (31, 56, 60, 240), icone="x"), 540, 1150, T(76.0), "pop", 0.45, fim=T(82.6)),
@@ -218,7 +222,8 @@ def main():
                 elif t > b: off = int(out_cubic((t - b) / TR) * H)                    # sai para baixo
                 else: off = 0
                 q.paste(tela.crop((0, 0, W, H - off)), (0, off)) if off < H else None
-        legenda(q, t)
+        explicando = any(a - 0.001 <= t <= b + TR for a, b, *_ in ins) or any(e.estado(t) for e in sobre)
+        if not explicando: legenda(q, t)
         enc.stdin.write(q.tobytes())
         if n % 300 == 0: print(f"  {t:5.1f}s", flush=True)
     enc.stdin.close(); enc.wait(); dec.wait()
