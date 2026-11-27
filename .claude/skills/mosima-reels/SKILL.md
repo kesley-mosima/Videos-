@@ -37,6 +37,7 @@ Identidade: verde `#2E5156`, verde-escuro `#1F383C`/`#132629`, cobre `#C57A55`, 
 ### 2. Transcrever com tempo por palavra
 - Scriptivox: `transcribe_url` (link do Drive público, Instagram, etc.) ou upload pelo site/caixa.
 - Exporte **CSV com 1 palavra por linha**: `export_transcript(formats=["csv"], max_words=1, max_duration=2, include_speakers="false")`.
+- **Sem cota no Scriptivox** (3/dia no plano grátis): use `scripts/transcrever.py` (Whisper `medium`, local, ~2 min por minuto de áudio). O Whisper às vezes "cola" a pausa no início de uma palavra: confira os limites das tomadas com `silencedetect` e garanta que a primeira/última palavra de cada corte esteja **inteira dentro** do intervalo (senão some da legenda).
 - Salve como `palavras.csv` (colunas `index,start,end,text`, tempos em segundos — converta `00:01:02.345` → `62.345`).
   Pode manter só as palavras dos trechos aproveitados.
 

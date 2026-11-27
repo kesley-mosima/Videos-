@@ -1,0 +1,96 @@
+1
+00:00:00,119 --> 00:00:01,220
+Você sofreu um acidente
+
+2
+00:00:01,220 --> 00:00:02,019
+de moto
+
+3
+00:00:02,019 --> 00:00:02,939
+de carro
+
+4
+00:00:02,939 --> 00:00:04,219
+alguma queda em casa
+
+5
+00:00:04,219 --> 00:00:05,159
+algum trauma e ficou
+
+6
+00:00:05,159 --> 00:00:06,800
+com dificuldade para trabalhar?
+
+7
+00:00:06,800 --> 00:00:07,419
+O fato de um
+
+8
+00:00:07,419 --> 00:00:08,200
+acidente não ter
+
+9
+00:00:08,200 --> 00:00:09,739
+acontecido dentro da empresa
+
+10
+00:00:09,739 --> 00:00:11,499
+não elimina automaticamente
+
+11
+00:00:11,499 --> 00:00:12,900
+a possibilidade de receber
+
+12
+00:00:12,900 --> 00:00:13,879
+o auxílio acidente
+
+13
+00:00:13,879 --> 00:00:14,779
+O benefício pode
+
+14
+00:00:14,779 --> 00:00:16,259
+ser analisado em acidentes
+
+15
+00:00:16,259 --> 00:00:17,899
+de qualquer natureza
+
+16
+00:00:17,899 --> 00:00:18,890
+O ponto principal
+
+17
+00:00:18,890 --> 00:00:19,909
+não é onde
+
+18
+00:00:19,909 --> 00:00:21,669
+o acidente aconteceu
+
+19
+00:00:21,669 --> 00:00:22,489
+É saber se
+
+20
+00:00:22,489 --> 00:00:23,889
+depois da recuperação
+
+21
+00:00:23,889 --> 00:00:25,209
+permaneceu alguma sequela
+
+22
+00:00:25,209 --> 00:00:26,589
+definitiva que tornou
+
+23
+00:00:26,589 --> 00:00:27,409
+seu trabalho mais
+
+24
+00:00:27,409 --> 00:00:28,349
+difícil
+

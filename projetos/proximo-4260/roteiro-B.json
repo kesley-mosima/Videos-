@@ -1,0 +1,219 @@
+{
+  "video": "fonte/IMG_4260.mov",
+  "palavras_csv": "palavras.csv",
+  "handle": "@mosimaadv",
+  "frase_final": "Direito previdenciário explicado de forma simples",
+  "cortes": [
+    [
+      9.15,
+      16.05
+    ],
+    [
+      16.75,
+      24.25
+    ],
+    [
+      45.75,
+      49.8
+    ],
+    [
+      53.45,
+      63.9
+    ]
+  ],
+  "duracao_alvo": 60,
+  "pausa_max": 0.28,
+  "cauda": 2.2,
+  "legenda_estilo": "karaoke",
+  "destaques": [
+    "acidente",
+    "moto",
+    "carro",
+    "queda",
+    "casa",
+    "trauma",
+    "dificuldade",
+    "empresa",
+    "automaticamente",
+    "possibilidade",
+    "auxílio",
+    "qualquer",
+    "natureza",
+    "principal",
+    "sequela",
+    "definitiva",
+    "difícil"
+  ],
+  "nome": "auxilio-acidente-2-B",
+  "saida": "saida-B",
+  "reusar_base": true,
+  "barra_progresso": true,
+  "_variacao": "B — dinâmico: punch-in, painel escuro com tipografia cinética, carimbo MITO, barra de progresso",
+  "layout": {
+    "zoom_cheio": {
+      "escala": 1.6,
+      "centro": [
+        540,
+        600
+      ]
+    }
+  },
+  "capa": {
+    "instante": 8.6,
+    "zoom": 1.9,
+    "deslocamento_y": 150,
+    "selo": "INSS · AUXÍLIO-ACIDENTE",
+    "nome": "[Nome da advogada]",
+    "registro": "OAB/SC nº [00.000]  ·  Moraes Silva & Massimino Advogados",
+    "linha1": "SÓ VALE ACIDENTE",
+    "linha2": "DE TRABALHO?",
+    "subtitulo": "Entenda o auxílio-acidente do INSS"
+  },
+  "blocos": [
+    {
+      "de": 9.15,
+      "ate": 10.55,
+      "modo": "cheio",
+      "punch": true,
+      "elementos": [
+        {
+          "tipo": "titulo",
+          "l1": "SOFREU UM",
+          "l2": "ACIDENTE?",
+          "t": 9.15,
+          "anim": "nenhum"
+        }
+      ]
+    },
+    {
+      "de": 10.55,
+      "ate": 16.7,
+      "modo": "split",
+      "elementos": [
+        {
+          "tipo": "chip",
+          "texto": "QUALQUER ACIDENTE",
+          "t": 10.6,
+          "y": 180
+        },
+        {
+          "tipo": "texto",
+          "estilo": "grande",
+          "texto": "MOTO",
+          "t": 10.7,
+          "y": 300,
+          "anim": "pop"
+        },
+        {
+          "tipo": "texto",
+          "estilo": "grande",
+          "texto": "CARRO",
+          "cor": "cobre",
+          "t": 11.45,
+          "y": 400,
+          "anim": "pop"
+        },
+        {
+          "tipo": "texto",
+          "estilo": "grande",
+          "texto": "QUEDA EM CASA",
+          "t": 12.45,
+          "y": 500,
+          "anim": "pop"
+        },
+        {
+          "tipo": "texto",
+          "estilo": "grande",
+          "texto": "OUTRO TRAUMA",
+          "cor": "cobre",
+          "t": 13.6,
+          "y": 600,
+          "anim": "pop"
+        },
+        {
+          "tipo": "faixa",
+          "texto": "DIFICULDADE PARA TRABALHAR?",
+          "tam": 50,
+          "t": 14.7,
+          "y": 720,
+          "loop": "pulso",
+          "amp": 0.04
+        }
+      ]
+    },
+    {
+      "de": 16.7,
+      "ate": 45.75,
+      "modo": "cheio",
+      "punch": true,
+      "elementos": [
+        {
+          "tipo": "titulo",
+          "l1": "SÓ VALE ACIDENTE",
+          "l2": "DE TRABALHO?",
+          "t": 16.8,
+          "fim": 20.0
+        },
+        {
+          "tipo": "carimbo",
+          "texto": "MITO",
+          "t": 20.15,
+          "y": 1110
+        }
+      ]
+    },
+    {
+      "de": 45.75,
+      "ate": "fim",
+      "modo": "split",
+      "elementos": [
+        {
+          "tipo": "chip",
+          "texto": "AUXÍLIO-ACIDENTE",
+          "t": 45.8,
+          "y": 180
+        },
+        {
+          "tipo": "texto",
+          "estilo": "titulo",
+          "texto": "ACIDENTE DE QUALQUER NATUREZA",
+          "tam": 50,
+          "t": 47.6,
+          "y": 290
+        },
+        {
+          "tipo": "coluna",
+          "titulo": "ONDE ACONTECEU",
+          "texto": "não é o ponto",
+          "cor": "negativo",
+          "t": 53.6,
+          "x": 290,
+          "y": 440
+        },
+        {
+          "tipo": "coluna",
+          "titulo": "A SEQUELA",
+          "texto": "é o que importa",
+          "cor": "positivo",
+          "t": 56.0,
+          "x": 790,
+          "y": 440
+        },
+        {
+          "tipo": "check",
+          "texto": "Sequela definitiva",
+          "t": 59.6,
+          "t_ok": 61.2,
+          "y": 590
+        },
+        {
+          "tipo": "check",
+          "texto": "Trabalho ficou mais difícil",
+          "t": 61.9,
+          "t_ok": 63.3,
+          "y": 690
+        }
+      ]
+    }
+  ]
+}

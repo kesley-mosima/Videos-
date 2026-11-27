@@ -1,0 +1,132 @@
+{
+  "video": "fonte/IMG_4260.mov",
+  "palavras_csv": "palavras.csv",
+  "handle": "@mosimaadv",
+  "frase_final": "Direito previdenciário explicado de forma simples",
+  "cortes": [
+    [
+      9.15,
+      16.05
+    ],
+    [
+      16.75,
+      24.25
+    ],
+    [
+      45.75,
+      49.8
+    ],
+    [
+      53.45,
+      63.9
+    ]
+  ],
+  "duracao_alvo": 60,
+  "pausa_max": 0.28,
+  "cauda": 2.2,
+  "legenda_estilo": "karaoke",
+  "destaques": [
+    "acidente",
+    "moto",
+    "carro",
+    "queda",
+    "casa",
+    "trauma",
+    "dificuldade",
+    "empresa",
+    "automaticamente",
+    "possibilidade",
+    "auxílio",
+    "qualquer",
+    "natureza",
+    "principal",
+    "sequela",
+    "definitiva",
+    "difícil"
+  ],
+  "nome": "auxilio-acidente-2-A",
+  "saida": "saida-A",
+  "reusar_base": false,
+  "marca_dagua": true,
+  "_variacao": "A — editorial: rosto em tela cheia, chamadas acima da cabeça, legenda karaokê",
+  "layout": {
+    "zoom_cheio": {
+      "escala": 1.45,
+      "centro": [
+        540,
+        620
+      ]
+    },
+    "descer": 270,
+    "escurecer_topo": true,
+    "marca_y": 130,
+    "legenda_cheio": 1290
+  },
+  "capa": {
+    "instante": 8.6,
+    "zoom": 1.9,
+    "deslocamento_y": 150,
+    "selo": "INSS · AUXÍLIO-ACIDENTE",
+    "nome": "[Nome da advogada]",
+    "registro": "OAB/SC nº [00.000]  ·  Moraes Silva & Massimino Advogados",
+    "linha1": "ACIDENTE FORA",
+    "linha2": "DO TRABALHO?",
+    "subtitulo": "Você ainda pode ter direito ao auxílio-acidente"
+  },
+  "blocos": [
+    {
+      "de": 9.15,
+      "ate": 63.62,
+      "modo": "cheio",
+      "elementos": [
+        {
+          "tipo": "titulo_serifa",
+          "l1": "Auxílio-acidente",
+          "l2": "e se o acidente não foi no trabalho?",
+          "t": 9.15,
+          "anim": "nenhum",
+          "fim": 16.6,
+          "y": 310
+        },
+        {
+          "tipo": "manchete",
+          "texto": "“NÃO FOI NO TRABALHO,\nENTÃO NÃO TENHO DIREITO?”",
+          "t": 16.8,
+          "fim": 20.0,
+          "y": 310
+        },
+        {
+          "tipo": "manchete",
+          "texto": "ISSO NÃO ELIMINA\nA POSSIBILIDADE",
+          "tam": 62,
+          "t": 20.1,
+          "fim": 24.25,
+          "y": 310
+        },
+        {
+          "tipo": "manchete",
+          "texto": "ACIDENTE DE QUALQUER NATUREZA",
+          "tam": 56,
+          "t": 47.6,
+          "fim": 49.45,
+          "y": 310
+        },
+        {
+          "tipo": "manchete",
+          "texto": "O PONTO NÃO É ONDE ACONTECEU",
+          "tam": 56,
+          "t": 53.6,
+          "fim": 56.75,
+          "y": 310
+        },
+        {
+          "tipo": "manchete",
+          "texto": "É A SEQUELA DEFINITIVA\nQUE DIFICULTA O TRABALHO",
+          "tam": 56,
+          "t": 59.6,
+          "y": 310
+        }
+      ]
+    }
+  ]
+}
