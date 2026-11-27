@@ -9,8 +9,8 @@
       16.05
     ],
     [
-      16.75,
-      24.25
+      25.0,
+      33.3
     ],
     [
       45.75,
@@ -18,7 +18,11 @@
     ],
     [
       53.45,
-      63.9
+      57.15
+    ],
+    [
+      74.6,
+      80.95
     ]
   ],
   "duracao_alvo": 60,
@@ -35,14 +39,13 @@
     "dificuldade",
     "empresa",
     "automaticamente",
-    "possibilidade",
+    "direito",
     "auxílio",
     "qualquer",
     "natureza",
     "principal",
     "sequela",
-    "definitiva",
-    "difícil"
+    "dificultou"
   ],
   "nome": "auxilio-acidente-2-A",
   "saida": "saida-A",
@@ -76,7 +79,7 @@
   "blocos": [
     {
       "de": 9.15,
-      "ate": 63.62,
+      "ate": 80.95,
       "modo": "cheio",
       "elementos": [
         {
@@ -91,16 +94,16 @@
         {
           "tipo": "manchete",
           "texto": "“NÃO FOI NO TRABALHO,\nENTÃO NÃO TENHO DIREITO?”",
-          "t": 16.8,
-          "fim": 20.0,
+          "t": 25.1,
+          "fim": 28.8,
           "y": 310
         },
         {
           "tipo": "manchete",
-          "texto": "ISSO NÃO ELIMINA\nA POSSIBILIDADE",
-          "tam": 62,
-          "t": 20.1,
-          "fim": 24.25,
+          "texto": "ISSO NÃO ELIMINA\nO DIREITO AUTOMATICAMENTE",
+          "tam": 56,
+          "t": 28.9,
+          "fim": 33.3,
           "y": 310
         },
         {
@@ -108,7 +111,7 @@
           "texto": "ACIDENTE DE QUALQUER NATUREZA",
           "tam": 56,
           "t": 47.6,
-          "fim": 49.45,
+          "fim": 49.8,
           "y": 310
         },
         {
@@ -116,14 +119,14 @@
           "texto": "O PONTO NÃO É ONDE ACONTECEU",
           "tam": 56,
           "t": 53.6,
-          "fim": 56.75,
+          "fim": 57.15,
           "y": 310
         },
         {
           "tipo": "manchete",
-          "texto": "É A SEQUELA DEFINITIVA\nQUE DIFICULTA O TRABALHO",
+          "texto": "É A SEQUELA QUE\nDIFICULTOU O TRABALHO",
           "tam": 56,
-          "t": 59.6,
+          "t": 78.1,
           "y": 310
         }
       ]

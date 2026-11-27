@@ -49,6 +49,7 @@ não existe; era Tema Repetitivo 1285). Não invente tese. Verifique o Proviment
 sem captação, sem promessa de resultado, CTA informativo ("siga o perfil").
 
 ### 4. Decidir os cortes
+- **Atenção ao narrador/ponto:** o escritório costuma gravar com alguém fora de quadro lendo o script em voz alta para a advogada repetir. A transcrição traz as duas vozes. **Nunca use as falas do narrador.** Rode `python3 scripts/quem_fala.py video palavras.csv X Y L A` (caixa da boca) e use só as frases marcadas como PESSOA (boca em movimento); em caso de "dúvida", confira o quadro. Frases repetidas em sequência são o sinal típico (1ª = narrador, 2ª = advogada).
 - Elimine regravações ("vamos fazer de novo", "apaga essa parte", "é para ficar esse último"), frases truncadas,
   erros de concordância/termo (cortando o trecho, sem inventar fala) e repetições.
 - Se passar de ~75 s, corte o trecho menos essencial (geralmente uma conclusão que repete algo já dito) em vez
