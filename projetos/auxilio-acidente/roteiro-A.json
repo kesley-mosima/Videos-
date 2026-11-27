@@ -1,29 +1,46 @@
 {
   "nome": "auxilio-acidente-A",
-  "_variacao": "A — painel claro educativo: rosto em cima, painel embaixo, checklist de sintomas, entrada em cortina",
+  "_variacao": "A (v2) — editorial: rosto em tela cheia o tempo todo, título com serifa, capítulos numerados 01/02/03, cortes em preto e branco com frase de impacto, manchetes condensadas, legenda por frase, @ no canto",
   "video": "fonte/auxilio-acidente-bruto.mp4",
   "palavras_csv": "palavras.csv",
   "saida": "saida-A",
   "reusar_base": true,
   "handle": "@mosimaadv",
   "frase_final": "Direito previdenciário explicado de forma simples",
-
-  "cortes": [[11.85, 37.6], [58.43, 71.80], [77.45, 83.70]],
+  "marca_dagua": true,
+  "legenda_estilo": "frase",
+  "cortes": [
+    [
+      11.85,
+      37.6
+    ],
+    [
+      58.43,
+      71.8
+    ],
+    [
+      77.45,
+      83.7
+    ]
+  ],
   "duracao_alvo": 60,
   "pausa_max": 0.28,
   "cauda": 1.6,
   "correcoes": {},
-  "destaques": ["acidente", "esforço", "força", "firmeza", "peso", "dirigir", "máquinas", "inss", "sequela", "definitiva", "totalmente", "incapaz", "direito", "auxílio"],
-
   "layout": {
-    "estilo": "invertido",
-    "tema": "claro",
-    "transicao": "cortina",
-    "zoom_cheio": {"escala": 1.6, "centro": [540, 600]}
+    "zoom_cheio": {
+      "escala": 1.6,
+      "centro": [
+        540,
+        600
+      ]
+    },
+    "legenda_cheio": 1290
   },
-
   "capa": {
-    "instante": 85.0, "zoom": 1.9, "deslocamento_y": 150,
+    "instante": 85.0,
+    "zoom": 1.9,
+    "deslocamento_y": 150,
     "selo": "INSS · AUXÍLIO-ACIDENTE",
     "linha1": "VOLTOU A TRABALHAR",
     "linha2": "COM SEQUELA?",
@@ -31,30 +48,139 @@
     "nome": "[Nome da advogada]",
     "registro": "OAB/SC nº [00.000]  ·  Moraes Silva & Massimino Advogados"
   },
-
   "blocos": [
-    {"de": 11.85, "ate": 16.4, "modo": "cheio", "elementos": [
-      {"tipo": "titulo", "l1": "VOLTOU A TRABALHAR", "l2": "DEPOIS DE UM ACIDENTE?", "t": 11.85, "anim": "nenhum"}
-    ]},
-    {"de": 16.4, "ate": 31.8, "modo": "split", "elementos": [
-      {"tipo": "chip", "texto": "SINAIS DE ALERTA", "t": 16.5, "y": 1040},
-      {"tipo": "check", "texto": "Mais esforço para o mesmo trabalho", "t": 16.8, "t_ok": 19.3, "y": 1120},
-      {"tipo": "check", "texto": "Perdeu força ou firmeza nas mãos", "t": 21.6, "t_ok": 24.4, "y": 1205},
-      {"tipo": "check", "texto": "Dificuldade para carregar peso", "t": 25.8, "t_ok": 27.4, "y": 1290},
-      {"tipo": "check", "texto": "Dirigir, operar máquinas, ficar em pé", "t": 28.1, "t_ok": 31.0, "y": 1375}
-    ]},
-    {"de": 31.8, "ate": 58.43, "modo": "cheio", "elementos": [
-      {"tipo": "carimbo", "texto": "MITO", "t": 35.4, "y": 1110}
-    ]},
-    {"de": 58.43, "ate": 71.8, "modo": "split", "elementos": [
-      {"tipo": "chip", "texto": "AUXÍLIO-ACIDENTE", "t": 58.5, "y": 1040},
-      {"tipo": "coluna", "titulo": "TRABALHANDO", "texto": "pode receber", "cor": "verde", "t": 61.4, "x": 290, "y": 1150},
-      {"tipo": "coluna", "titulo": "COM SEQUELA", "texto": "definitiva", "cor": "cobre", "t": 64.4, "x": 790, "y": 1150},
-      {"tipo": "texto", "estilo": "destaque", "texto": "que reduziu a capacidade de trabalho", "tam": 40, "t": 66.2, "y": 1265, "anim": "fade"},
-      {"tipo": "texto", "estilo": "corpo", "texto": "Incapacidade total NÃO é exigida", "t": 69.2, "y": 1365}
-    ]},
-    {"de": 77.45, "ate": "fim", "modo": "cheio", "elementos": [
-      {"tipo": "titulo", "l1": "SIGA", "l2": "@mosimaadv", "t": 80.6}
-    ]}
+    {
+      "de": 11.85,
+      "ate": 83.7,
+      "modo": "cheio",
+      "elementos": [
+        {
+          "tipo": "titulo_serifa",
+          "l1": "Auxílio-acidente",
+          "l2": "voltou a trabalhar com sequela?",
+          "t": 11.85,
+          "anim": "nenhum",
+          "fim": 16.3,
+          "y": 1110
+        },
+        {
+          "tipo": "pb",
+          "t": 16.45,
+          "fim": 18.0
+        },
+        {
+          "tipo": "manchete",
+          "texto": "“MAIS ESFORÇO PARA\nO MESMO TRABALHO?”",
+          "t": 16.45,
+          "fim": 18.0,
+          "y": 1100
+        },
+        {
+          "tipo": "numero",
+          "texto": "01",
+          "t": 16.45,
+          "fim": 31.8
+        },
+        {
+          "tipo": "manchete",
+          "texto": "PERDA DE FORÇA E FIRMEZA NAS MÃOS",
+          "tam": 50,
+          "t": 22.9,
+          "fim": 25.6,
+          "y": 1110
+        },
+        {
+          "tipo": "manchete",
+          "texto": "CARREGAR PESO · DIRIGIR · MÁQUINAS",
+          "tam": 50,
+          "t": 26.8,
+          "fim": 30.3,
+          "y": 1110
+        },
+        {
+          "tipo": "manchete",
+          "texto": "FICAR MUITO TEMPO EM PÉ",
+          "tam": 50,
+          "t": 30.6,
+          "fim": 31.8,
+          "y": 1110
+        },
+        {
+          "tipo": "pb",
+          "t": 32.25,
+          "fim": 33.9
+        },
+        {
+          "tipo": "manchete",
+          "texto": "“VOLTEI A TRABALHAR,\nENTÃO NÃO TENHO DIREITO”",
+          "t": 32.25,
+          "fim": 33.9,
+          "y": 1100
+        },
+        {
+          "tipo": "numero",
+          "texto": "02",
+          "t": 32.25,
+          "fim": 37.6
+        },
+        {
+          "tipo": "manchete",
+          "texto": "ISSO É UM MITO",
+          "tam": 64,
+          "t": 35.4,
+          "fim": 37.6,
+          "y": 1110
+        },
+        {
+          "tipo": "pb",
+          "t": 58.43,
+          "fim": 60.0
+        },
+        {
+          "tipo": "manchete",
+          "texto": "“EXISTE UM BENEFÍCIO\nPARA ISSO”",
+          "t": 58.43,
+          "fim": 60.0,
+          "y": 1100
+        },
+        {
+          "tipo": "numero",
+          "texto": "03",
+          "t": 58.43,
+          "fim": 71.8
+        },
+        {
+          "tipo": "manchete",
+          "texto": "AUXÍLIO-ACIDENTE",
+          "tam": 64,
+          "t": 60.1,
+          "fim": 63.8,
+          "y": 1110
+        },
+        {
+          "tipo": "manchete",
+          "texto": "SEQUELA DEFINITIVA + CAPACIDADE REDUZIDA",
+          "tam": 46,
+          "t": 64.1,
+          "fim": 68.3,
+          "y": 1110
+        },
+        {
+          "tipo": "manchete",
+          "texto": "NÃO PRECISA ESTAR TOTALMENTE INCAPAZ",
+          "tam": 50,
+          "t": 69.2,
+          "fim": 71.8,
+          "y": 1110
+        },
+        {
+          "tipo": "manchete",
+          "texto": "SIGA @mosimaadv",
+          "tam": 60,
+          "t": 80.8,
+          "y": 1110
+        }
+      ]
+    }
   ]
 }

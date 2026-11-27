@@ -39,7 +39,9 @@ def borda(a_fill=22, a_out=60):
 _FONTES = {}
 def F(peso, tam):
     k = (peso, tam)
-    if k not in _FONTES: _FONTES[k] = ImageFont.truetype(os.path.join(ASSETS, "fontes", f"Lato-{peso}.ttf"), tam)
+    if k not in _FONTES:
+        arq = f"{peso}.ttf" if peso in ("Oswald", "Playfair", "PlayfairItalic") else f"Lato-{peso}.ttf"
+        _FONTES[k] = ImageFont.truetype(os.path.join(ASSETS, "fontes", arq), tam)
     return _FONTES[k]
 LOGO = Image.open(os.path.join(ASSETS, "logo-completo.png")).convert("RGBA")
 
@@ -250,6 +252,27 @@ def check_linha(txt, marcado):
         dr.text((96*s, 44*s), txt, font=F("Bold", 42*s), fill=pc(BRANCO), anchor="lm")
     return sprite(960, 88, d)
 
+def com_sombra(im, raio=12, forca=0.8):
+    sh = Image.new("RGBA", im.size, (0, 0, 0, 0)); sh.putalpha(im.getchannel("A").filter(ImageFilter.GaussianBlur(raio)).point(lambda v: int(v * forca)))
+    o = Image.new("RGBA", (im.width, im.height), (0, 0, 0, 0)); o.alpha_composite(sh); o.alpha_composite(im); return o
+def numero(txt):
+    def d(dr, s):
+        dr.rounded_rectangle([4*s, 4*s, 92*s, 104*s], 14*s, fill=BRANCO, outline=(0, 0, 0, 255), width=3*s)
+        dr.text((48*s, 55*s), txt, font=F("Oswald", 64*s), fill="#111111", anchor="mm")
+    return com_sombra(sprite(96, 108, d), 8, 0.6)
+def manchete(txt, c=COBRE, tam=58):
+    linhas = txt.split("\n")
+    while max(F("Oswald", tam).getlength(l) for l in linhas) > 880: tam -= 2
+    return com_sombra(texto(txt, "Oswald", tam, c, esp=1.08, painel=False), 10, 0.9)
+def titulo_serifa(l1, l2, c1="#F1E4D6", c2=COBRE):
+    t1, t2 = 62, 70
+    while F("Playfair", t1).getlength(l1) > 820: t1 -= 2
+    while F("PlayfairItalic", t2).getlength(l2) > 820: t2 -= 2
+    a = texto(l1, "Playfair", t1, c1, painel=False); b = texto(l2, "PlayfairItalic", t2, c2, painel=False)
+    w = max(a.width, b.width); im = Image.new("RGBA", (w, a.height + b.height - 14), (0, 0, 0, 0))
+    im.alpha_composite(a, ((w - a.width) // 2, 0)); im.alpha_composite(b, ((w - b.width) // 2, a.height - 14))
+    return com_sombra(im, 14, 0.9)
+
 ESTILOS = {"titulo": ("Black", 58, BRANCO), "destaque": ("Black", 54, COBRE), "corpo": ("Bold", 42, BRANCO),
            "nota": ("Regular", 40, CLARO), "grande": ("Black", 72, BRANCO), "alerta": ("Bold", 42, NEG)}
 
@@ -295,6 +318,24 @@ class Projeto:
         return acc / self.vel
 
     def grupos(self):
+        if self.r.get("legenda_estilo") == "frase": return self.grupos_frase()
+        return self.grupos_curtos()
+
+    def grupos_frase(self):
+        out, at = [], []
+        for p in self.pw:
+            at.append(p); txt = " ".join(x[2] for x in at)
+            if p[2][-1] in ".?!" or (p[2][-1] in ",:" and len(txt) >= 18) or len(txt) >= 34 or len(at) >= 7:
+                out.append(at); at = []
+        if at: out.append(at)
+        res = []
+        for i, g in enumerate(out):
+            fim = g[-1][1] + 0.35
+            if i + 1 < len(out): fim = min(fim, out[i + 1][0][0])
+            res.append((g[0][0], fim, " ".join(x[2] for x in g).rstrip(".,:!")))
+        return res
+
+    def grupos_curtos(self):
         fracas = {"de", "para", "a", "o", "os", "as", "em", "um", "uma", "como", "se", "no", "na", "do", "da", "dos", "das", "ou", "que",
                   "e", "não", "ser", "pode", "foi", "ele", "ela", "nosso", "sua", "seu", "essa", "esse", "com", "mais", "vai", "à", "ao", "é"}
         out, at = [], []
@@ -357,6 +398,10 @@ class Projeto:
             t_ok = self.T(e.get("t_ok", e["t"] + 0.5))
             return [El(check_linha(e["texto"], False), x, y, t, anim or "dir", dur, fim=t_ok),
                     El(check_linha(e["texto"], True), x, y, t_ok, "nenhum", 0.01, fim=fim)]
+        elif tp == "numero": spr = numero(e["texto"]); x = e.get("x", 110); y = e.get("y", 300); anim = anim or "pop"; dur = e.get("dur", 0.3)
+        elif tp == "manchete": spr = manchete(e["texto"], cor(e.get("cor", COBRE)), e.get("tam", 58)); y = e.get("y", 330); anim = anim or "fade"; dur = e.get("dur", 0.25)
+        elif tp == "titulo_serifa": spr = titulo_serifa(e["l1"], e["l2"]); y = e.get("y", 330); anim = anim or "fade"; dur = e.get("dur", 0.4)
+        elif tp == "pb": return [("pb", t, fim if fim is not None else t + 1.5)]
         elif tp == "moedas":
             return [El(ic_moeda(e.get("r", 40)), x + i * e.get("passo", 60), y, t + i * 0.15, "cair", 0.4, loop="flutuar", amp=5, de=120, fim=fim)
                     for i in range(e.get("n", 3))]
@@ -385,6 +430,19 @@ def desenhar_contador(base, t, c):
     a, b = CACHE[k]
     if a: base.alpha_composite(a, (540 - a.width // 2, y))
     base.alpha_composite(b, (540 - b.width // 2, y + (65 if a else 0)))
+
+def legenda_frase(base, leg, t, y):
+    txt = next((l[2] for l in leg if l[0] <= t < l[1]), "")
+    if not txt: return
+    k = ("F", txt)
+    if k not in CACHE:
+        palavras, linhas, at = txt.split(" "), [], ""
+        for p_ in palavras:
+            if at and F("Bold", 46).getlength(at + " " + p_) > 760: linhas.append(at); at = p_
+            else: at = (at + " " + p_).strip()
+        linhas.append(at)
+        CACHE[k] = com_sombra(texto("\n".join(linhas), "Bold", 46, BRANCO, esp=1.18, painel=False), 8, 0.95)
+    im = CACHE[k]; base.alpha_composite(im, (540 - im.width // 2, int(y - im.height / 2)))
 
 def legenda(base, leg, t, y, destaques=frozenset()):
     txt = next((l[2] for l in leg if l[0] <= t < l[1]), "")
@@ -448,6 +506,12 @@ def quadro(P, B, fundo, fim_im, fim_els, rosto, t):
         ant = 1 + bloco_atual[4].get("punch_forca", 0.12) * ((idx - 1) % 2)
         esc *= ant + (alvo - ant) * out_cubic(clamp((t - ini) / 0.14))
     rosto = aplicar_zoom(rosto, esc, cx, cy)
+    pb = [(e[1], e[2]) for b in B for e in b[3] if isinstance(e, tuple) and e[0] == "pb"]
+    if any(a <= t <= b for a, b in pb):
+        g = rosto.convert("L").point(lambda v: int(v * 0.82)).convert("RGBA")
+        sombra = Image.new("RGBA", (W, H), (0, 0, 0, 0)); ds = ImageDraw.Draw(sombra)
+        for yy in range(0, 700, 4): ds.rectangle([0, yy, W, yy + 4], fill=(0, 0, 0, int(200 * (1 - yy / 700))))
+        g.alpha_composite(sombra); rosto = g
     if t >= t_fim:
         q = fim_im.copy(); compor(q, fim_els, t - t_fim); k = out_cubic(clamp((t - t_fim) / 0.3))
         if k < 1: r2 = rosto.copy(); r2.putalpha(int(255 * (1 - k))); q.alpha_composite(r2)
@@ -473,13 +537,18 @@ def quadro(P, B, fundo, fim_im, fim_els, rosto, t):
         if not (a - 0.01 <= t <= b + 0.25): continue
         cam = Image.new("RGBA", (W, H), (0, 0, 0, 0)); compor(cam, [e for e in els if isinstance(e, El)], t)
         for e in els:
-            if isinstance(e, tuple): desenhar_contador(cam, t, e)
+            if isinstance(e, tuple) and e[0] == "contador": desenhar_contador(cam, t, e)
         if t > b: cam.putalpha(cam.getchannel("A").point(lambda v, f=1 - (t - b) / 0.25: int(v * f)))
         elif modo == "split" and k < 1 and not cortina: cam.putalpha(cam.getchannel("A").point(lambda v, f=k: int(v * f)))
         if modo == "split" and cortina and dx: q.alpha_composite(cam.crop((0, 0, W - dx, H)), (dx, 0))
         else: q.alpha_composite(cam)
     y_leg = lay["legenda_cheio"] * (1 - k) + lay["legenda_split"] * k
-    legenda(q, P.leg, t, y_leg, P.destaques)
+    if P.r.get("legenda_estilo") == "frase": legenda_frase(q, P.leg, t, y_leg)
+    else: legenda(q, P.leg, t, y_leg, P.destaques)
+    if P.r.get("marca_dagua"):
+        k_ = ("MD", P.r.get("handle"))
+        if k_ not in CACHE: CACHE[k_] = com_sombra(texto(P.r.get("handle", "@mosimaadv"), "Bold", 26, BRANCO, painel=False), 6, 0.8)
+        md = CACHE[k_]; q.alpha_composite(md, (W - md.width - 30, 200))
     if P.r.get("barra_progresso"):
         d = ImageDraw.Draw(q); d.rectangle([0, 0, W, 12], fill=(0, 0, 0, 90)); d.rectangle([0, 0, int(W * clamp(t / t_fim)), 12], fill=COBRE)
     return q

@@ -1,220 +1,88 @@
 1
-00:00:00,119 --> 00:00:00,660
-Você sofreu
+00:00:00,119 --> 00:00:01,679
+Você sofreu um acidente
 
 2
-00:00:00,660 --> 00:00:01,679
-um acidente
+00:00:01,679 --> 00:00:03,561
+recebeu alta e conseguiu voltar ao
 
 3
-00:00:01,679 --> 00:00:02,660
-recebeu alta
+00:00:03,561 --> 00:00:06,260
+trabalho, mas desde então precisa fazer
 
 4
-00:00:02,660 --> 00:00:03,141
-e conseguiu
+00:00:06,260 --> 00:00:09,022
+mais esforço para exercer a mesma atividade?
 
 5
-00:00:03,141 --> 00:00:04,301
-voltar ao trabalho
+00:00:09,022 --> 00:00:10,422
+Pode ser que você tenha perdido a
 
 6
-00:00:04,301 --> 00:00:05,000
-mas desde
+00:00:10,422 --> 00:00:12,443
+força, a firmeza nas mãos
 
 7
-00:00:05,000 --> 00:00:05,920
-então precisa
+00:00:12,443 --> 00:00:14,763
+tenha dificuldade para carregar peso
 
 8
-00:00:05,920 --> 00:00:07,100
-fazer mais esforço
+00:00:14,763 --> 00:00:17,304
+dirigir, operar máquinas ou até mesmo
 
 9
-00:00:07,100 --> 00:00:07,762
-para exercer
+00:00:17,304 --> 00:00:18,544
+para ficar muito tempo em pé
 
 10
-00:00:07,762 --> 00:00:08,101
-a mesma
+00:00:18,544 --> 00:00:20,604
+Muita gente acredita que por ter voltado
 
 11
-00:00:08,101 --> 00:00:09,022
-atividade?
+00:00:20,604 --> 00:00:22,325
+ao trabalho não tem direito a um
 
 12
-00:00:09,022 --> 00:00:09,481
-Pode ser que
-
-13
-00:00:09,481 --> 00:00:10,001
-você tenha
-
-14
-00:00:10,001 --> 00:00:11,021
-perdido a força
-
-15
-00:00:11,021 --> 00:00:11,603
-a firmeza
-
-16
-00:00:11,603 --> 00:00:12,443
-nas mãos
-
-17
-00:00:12,443 --> 00:00:13,483
-tenha dificuldade
-
-18
-00:00:13,483 --> 00:00:14,063
-para carregar
-
-19
-00:00:14,063 --> 00:00:14,763
-peso
-
-20
-00:00:14,763 --> 00:00:15,523
-dirigir
-
-21
-00:00:15,523 --> 00:00:16,684
-operar máquinas
-
-22
-00:00:16,684 --> 00:00:16,964
-ou até
-
-23
-00:00:16,964 --> 00:00:17,624
-mesmo para ficar
-
-24
-00:00:17,624 --> 00:00:18,084
-muito tempo
-
-25
-00:00:18,084 --> 00:00:18,544
-em pé
-
-26
-00:00:18,544 --> 00:00:19,084
-Muita gente
-
-27
-00:00:19,084 --> 00:00:20,004
-acredita que por
-
-28
-00:00:20,004 --> 00:00:20,604
-ter voltado
-
-29
-00:00:20,604 --> 00:00:21,525
-ao trabalho
-
-30
-00:00:21,525 --> 00:00:21,924
-não tem
-
-31
-00:00:21,924 --> 00:00:22,325
-direito a um
-
-32
 00:00:22,325 --> 00:00:23,744
 benefício do INSS
 
-33
-00:00:23,744 --> 00:00:24,305
-Mas o auxílio
+13
+00:00:23,744 --> 00:00:26,366
+Mas o auxílio acidente existe justamente
 
-34
-00:00:24,305 --> 00:00:25,686
-acidente existe
+14
+00:00:26,366 --> 00:00:28,166
+para situações em que a pessoa voltou
 
-35
-00:00:25,686 --> 00:00:27,165
-justamente para situações
+15
+00:00:28,166 --> 00:00:30,287
+a trabalhar, mas ficou com uma sequela
 
-36
-00:00:27,165 --> 00:00:27,386
-em que a
+16
+00:00:30,287 --> 00:00:32,508
+definitiva que reduziu sua capacidade
 
-37
-00:00:27,386 --> 00:00:28,166
-pessoa voltou
-
-38
-00:00:28,166 --> 00:00:29,106
-a trabalhar
-
-39
-00:00:29,106 --> 00:00:29,606
-mas ficou
-
-40
-00:00:29,606 --> 00:00:30,287
-com uma sequela
-
-41
-00:00:30,287 --> 00:00:31,728
-definitiva que reduziu
-
-42
-00:00:31,728 --> 00:00:32,508
-sua capacidade
-
-43
+17
 00:00:32,508 --> 00:00:33,509
 para o trabalho
 
-44
-00:00:33,509 --> 00:00:34,610
-Não é necessário
+18
+00:00:33,509 --> 00:00:36,190
+Não é necessário ficar totalmente incapaz
 
-45
-00:00:34,610 --> 00:00:35,430
-ficar totalmente
+19
+00:00:36,190 --> 00:00:38,170
+Se você se identifica com essa situação
 
-46
-00:00:35,430 --> 00:00:36,190
-incapaz
+20
+00:00:38,170 --> 00:00:40,051
+procure um advogado especialista para
 
-47
-00:00:36,190 --> 00:00:36,690
-Se você
+21
+00:00:40,051 --> 00:00:41,452
+saber se você tem direito ao auxílio
 
-48
-00:00:36,690 --> 00:00:37,250
-se identifica
-
-49
-00:00:37,250 --> 00:00:38,170
-com essa situação
-
-50
-00:00:38,170 --> 00:00:39,091
-procure um advogado
-
-51
-00:00:39,091 --> 00:00:40,051
-especialista para
-
-52
-00:00:40,051 --> 00:00:40,611
-saber se você
-
-53
-00:00:40,611 --> 00:00:41,092
-tem direito
-
-54
-00:00:41,092 --> 00:00:41,452
-ao auxílio
-
-55
-00:00:41,452 --> 00:00:42,232
+22
+00:00:41,452 --> 00:00:42,282
 acidente
 
