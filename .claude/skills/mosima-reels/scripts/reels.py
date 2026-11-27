@@ -26,6 +26,16 @@ CLARO, VERDE_OK, ESCURO, POS, NEG = "#DCE6E7", "#3E8E6E", "#132629", "#7FC8A4", 
 CORES = {"verde": VERDE, "verde_escuro": VERDE_ESC, "cobre": COBRE, "cinza": CINZA, "branco": BRANCO, "areia": AREIA,
          "claro": CLARO, "positivo": POS, "negativo": NEG}
 def cor(c): return CORES.get(c, c) if c else BRANCO
+TEMA = {"claro": False}
+def pc(c):
+    """Cor de painel: no tema claro, branco vira verde-escuro e 'claro' vira cinza."""
+    c = cor(c)
+    if TEMA["claro"]:
+        if c == BRANCO: return VERDE_ESC
+        if c == CLARO: return CINZA
+    return c
+def borda(a_fill=22, a_out=60):
+    return ((0, 0, 0, a_fill // 2), (31, 56, 60, a_out)) if TEMA["claro"] else ((255, 255, 255, a_fill), (255, 255, 255, a_out))
 _FONTES = {}
 def F(peso, tam):
     k = (peso, tam)
@@ -42,12 +52,13 @@ def sprite(w, h, desenho):
     im = Image.new("RGBA", (w * SS, h * SS), (0, 0, 0, 0)); desenho(ImageDraw.Draw(im), SS)
     return im.resize((w, h), Image.LANCZOS)
 
-def texto(txt, peso, tam, c=BRANCO, esp=1.12):
+def texto(txt, peso, tam, c=BRANCO, esp=1.12, painel=True):
+    c = pc(c) if painel else cor(c)
     linhas = txt.split("\n"); f2 = F(peso, tam * SS)
     larg = max(int(f2.getlength(l)) for l in linhas) // SS + 24; alt = int(tam * esp * len(linhas)) + 24
     def d(dr, s):
         y = 12 * s
-        for l in linhas: dr.text((larg * s // 2, y), l, font=f2, fill=cor(c), anchor="mt"); y += int(tam * esp * s)
+        for l in linhas: dr.text((larg * s // 2, y), l, font=f2, fill=c, anchor="mt"); y += int(tam * esp * s)
     return sprite(larg, alt, d)
 
 class El:
@@ -185,8 +196,9 @@ ICONES = {"moeda": ic_moeda, "escudo": ic_escudo, "cofrinho": ic_cofrinho, "cedu
 def chip(txt, c=COBRE):
     f = F("Black", 30); w = int(f.getlength(txt)) + 70
     def d(dr, s):
-        dr.rounded_rectangle([0, 0, (w-1)*s, 54*s], 27*s, fill=(255, 255, 255, 22), outline=(255, 255, 255, 60), width=2*s)
-        dr.ellipse([22*s, 21*s, 34*s, 33*s], fill=cor(c)); dr.text((46*s, 27*s), txt, font=F("Black", 30*s), fill=BRANCO, anchor="lm")
+        fi, ou = borda()
+        dr.rounded_rectangle([0, 0, (w-1)*s, 54*s], 27*s, fill=fi, outline=ou, width=2*s)
+        dr.ellipse([22*s, 21*s, 34*s, 33*s], fill=cor(c)); dr.text((46*s, 27*s), txt, font=F("Black", 30*s), fill=pc(BRANCO), anchor="lm")
     return sprite(w, 56, d)
 def selo(ok=True, r=34):
     def d(dr, s):
@@ -197,27 +209,47 @@ def selo(ok=True, r=34):
     return sprite(2*r, 2*r, d)
 def tile(rotulo, icone):
     def d(dr, s):
-        dr.rounded_rectangle([0, 0, 299*s, 259*s], 28*s, fill=(255, 255, 255, 18), outline=(255, 255, 255, 50), width=2*s)
-        dr.text((150*s, 222*s), rotulo, font=F("Bold", 32*s), fill=BRANCO, anchor="mm")
+        fi, ou = borda(18, 50)
+        dr.rounded_rectangle([0, 0, 299*s, 259*s], 28*s, fill=fi, outline=ou, width=2*s)
+        dr.text((150*s, 222*s), rotulo, font=F("Bold", 32*s), fill=pc(BRANCO), anchor="mm")
     im = sprite(300, 260, d); ic = ICONES[icone]().copy(); ic.thumbnail((190, 150), Image.LANCZOS)
     im.alpha_composite(ic, ((300 - ic.width)//2, 30 + (150 - ic.height)//2)); return im
 def linha(txt, valor, positivo=True):
     def d(dr, s):
-        dr.rounded_rectangle([0, 0, 519*s, 69*s], 16*s, fill=(255, 255, 255, 16))
-        dr.text((24*s, 35*s), txt, font=F("Regular", 32*s), fill=CLARO, anchor="lm")
+        dr.rounded_rectangle([0, 0, 519*s, 69*s], 16*s, fill=borda(16)[0])
+        dr.text((24*s, 35*s), txt, font=F("Regular", 32*s), fill=pc(CLARO), anchor="lm")
         dr.text((496*s, 35*s), valor, font=F("Black", 34*s), fill=POS if positivo else NEG, anchor="rm")
     return sprite(520, 70, d)
 def coluna(titulo, txt, c):
     def d(dr, s):
-        dr.rounded_rectangle([0, 0, 379*s, 99*s], 20*s, fill=(255, 255, 255, 18), outline=(255, 255, 255, 50), width=2*s)
-        dr.text((190*s, 34*s), titulo, font=F("Black", 34*s), fill=BRANCO, anchor="mm"); dr.text((190*s, 72*s), txt, font=F("Regular", 28*s), fill=cor(c), anchor="mm")
+        fi, ou = borda(18, 50)
+        dr.rounded_rectangle([0, 0, 379*s, 99*s], 20*s, fill=fi, outline=ou, width=2*s)
+        dr.text((190*s, 34*s), titulo, font=F("Black", 34*s), fill=pc(BRANCO), anchor="mm"); dr.text((190*s, 72*s), txt, font=F("Regular", 28*s), fill=cor(c), anchor="mm")
     return sprite(380, 100, d)
 def titulo_cheio(l1, l2, c2=COBRE):
-    t1 = texto(l1, "Black", 64); t2 = texto(l2, "Black", 96, c2)
+    t1s, t2s = 64, 96
+    while F("Black", t2s).getlength(l2) > 920: t2s -= 4
+    while F("Black", t1s).getlength(l1) > 920: t1s -= 4
+    t1 = texto(l1, "Black", t1s, painel=False); t2 = texto(l2, "Black", t2s, c2, painel=False)
     w, h = max(t1.width, t2.width) + 80, t1.height + t2.height + 40
     im = Image.new("RGBA", (w, h), (0, 0, 0, 0)); im.alpha_composite(t1, ((w-t1.width)//2, 20)); im.alpha_composite(t2, ((w-t2.width)//2, 20+t1.height-10))
     sh = Image.new("RGBA", im.size, (0, 0, 0, 0)); sh.putalpha(im.getchannel("A").filter(ImageFilter.GaussianBlur(14)).point(lambda v: int(v*.85)))
     o = Image.new("RGBA", im.size, (0, 0, 0, 0)); o.alpha_composite(sh); o.alpha_composite(im); return o
+def carimbo(txt, c=COBRE):
+    f = F("Black", 64); w = int(f.getlength(txt)) + 80
+    def d(dr, s):
+        dr.rounded_rectangle([4*s, 4*s, (w-4)*s, 112*s], 18*s, outline=cor(c), width=8*s)
+        dr.text((w*s//2, 58*s), txt, font=F("Black", 64*s), fill=cor(c), anchor="mm")
+    return sprite(w, 116, d).rotate(-9, Image.BICUBIC, expand=True)
+def check_linha(txt, marcado):
+    def d(dr, s):
+        fi, ou = borda(16, 60)
+        dr.rounded_rectangle([0, 0, 959*s, 87*s], 20*s, fill=fi)
+        dr.rounded_rectangle([22*s, 19*s, 72*s, 69*s], 12*s, outline=pc(BRANCO), width=5*s, fill=VERDE_OK if marcado else None)
+        if marcado: dr.line([(31*s, 44*s), (43*s, 58*s), (63*s, 31*s)], fill=BRANCO, width=8*s, joint="curve")
+        dr.text((96*s, 44*s), txt, font=F("Bold", 42*s), fill=pc(BRANCO), anchor="lm")
+    return sprite(960, 88, d)
+
 ESTILOS = {"titulo": ("Black", 58, BRANCO), "destaque": ("Black", 54, COBRE), "corpo": ("Bold", 42, BRANCO),
            "nota": ("Regular", 40, CLARO), "grande": ("Black", 72, BRANCO), "alerta": ("Bold", 42, NEG)}
 
@@ -250,6 +282,8 @@ class Projeto:
             txt = por_indice.get(l["index"], corr.get(l["text"], l["text"]))
             self.pw.append((self.T(s), self.T(e), txt))
         self.leg = self.grupos()
+        self.frases = [self.pw[0][0]] + [self.pw[i + 1][0] for i in range(len(self.pw) - 1) if self.pw[i][2][-1] in ".?!,"]
+        self.destaques = {w.lower() for w in r.get("destaques", [])}
 
     def dentro(self, s, e): return any(a <= s and e <= b for a, b in self.cortes)
     def T(self, t):
@@ -317,6 +351,12 @@ class Projeto:
         elif tp == "tile": spr = tile(e["rotulo"], e["icone"]); anim = anim or "pop"; dur = e.get("dur", 0.4)
         elif tp == "linha": spr = linha(e["texto"], e["valor"], e.get("positivo", True)); anim = anim or "dir"; dur = e.get("dur", 0.35)
         elif tp == "coluna": spr = coluna(e["titulo"], e["texto"], e.get("cor", "positivo")); anim = anim or "pop"; dur = e.get("dur", 0.4)
+        elif tp == "carimbo":
+            spr = carimbo(e["texto"], e.get("cor", COBRE)); anim = anim or "pop"; dur = e.get("dur", 0.3)
+        elif tp == "check":
+            t_ok = self.T(e.get("t_ok", e["t"] + 0.5))
+            return [El(check_linha(e["texto"], False), x, y, t, anim or "dir", dur, fim=t_ok),
+                    El(check_linha(e["texto"], True), x, y, t_ok, "nenhum", 0.01, fim=fim)]
         elif tp == "moedas":
             return [El(ic_moeda(e.get("r", 40)), x + i * e.get("passo", 60), y, t + i * 0.15, "cair", 0.4, loop="flutuar", amp=5, de=120, fim=fim)
                     for i in range(e.get("n", 3))]
@@ -331,7 +371,7 @@ class Projeto:
             els = []
             for e in b.get("elementos", []): els += self.elemento(e)
             fim_b = self.T(b["ate"]) if b.get("ate") != "fim" else self.dur_fala - 0.1
-            B.append((self.T(b["de"]), fim_b, b["modo"], els))
+            B.append((self.T(b["de"]), fim_b, b["modo"], els, b))
         return B
 
 # ---------------- render ----------------
@@ -346,69 +386,107 @@ def desenhar_contador(base, t, c):
     if a: base.alpha_composite(a, (540 - a.width // 2, y))
     base.alpha_composite(b, (540 - b.width // 2, y + (65 if a else 0)))
 
-def legenda(base, leg, t, y):
+def legenda(base, leg, t, y, destaques=frozenset()):
     txt = next((l[2] for l in leg if l[0] <= t < l[1]), "")
     if not txt: return
     if txt not in CACHE:
-        f = F("Black", 140); bb = ImageDraw.Draw(Image.new("RGBA", (1, 1))).textbbox((0, 0), txt, font=f, stroke_width=10)
+        f = F("Black", 140); d0 = ImageDraw.Draw(Image.new("RGBA", (1, 1))); bb = d0.textbbox((0, 0), txt, font=f, stroke_width=10)
         w, h = bb[2] - bb[0] + 40, bb[3] - bb[1] + 40
         im = Image.new("RGBA", (w, h), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
-        d.text((w // 2, h // 2), txt, font=f, fill=BRANCO, anchor="mm", stroke_width=10, stroke_fill=(10, 20, 22, 230))
+        x = 20 - bb[0]; esp = f.getlength(" ")
+        for pal in txt.split(" "):
+            limpo = pal.strip(".,:;!?").lower()
+            d.text((x, h // 2), pal, font=f, fill=COBRE if limpo in destaques else BRANCO, anchor="lm", stroke_width=10, stroke_fill=(10, 20, 22, 230))
+            x += f.getlength(pal) + esp
         sh = Image.new("RGBA", im.size, (0, 0, 0, 0)); sh.putalpha(im.getchannel("A").filter(ImageFilter.GaussianBlur(12)).point(lambda v: int(v * .6)))
         o = Image.new("RGBA", im.size, (0, 0, 0, 0)); o.alpha_composite(sh); o.alpha_composite(im); CACHE[txt] = o.resize((w // 2, h // 2), Image.LANCZOS)
     im = CACHE[txt]; base.alpha_composite(im, (540 - im.width // 2, int(y - im.height / 2)))
 
-def painel_fundo():
-    im = Image.new("RGBA", (W, H), ESCURO); g = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    ImageDraw.Draw(g).ellipse([140, 40, 940, 860], fill=(46, 81, 86, 255)); im.alpha_composite(g.filter(ImageFilter.GaussianBlur(160))); return im
+def painel_fundo(claro=False, centro_y=450):
+    im = Image.new("RGBA", (W, H), AREIA if claro else ESCURO); g = Image.new("RGBA", (W, H), (255, 255, 255, 0) if claro else (46, 81, 86, 0))
+    ImageDraw.Draw(g).ellipse([140, centro_y - 410, 940, centro_y + 410], fill=(255, 255, 255, 255) if claro else (46, 81, 86, 255))
+    im.alpha_composite(g.filter(ImageFilter.GaussianBlur(160))); return im
 
 def cartao_final(handle, frase):
     im = painel_fundo(); lg = LOGO.copy(); lg.thumbnail((700, 400), Image.LANCZOS)
     box = Image.new("RGBA", (lg.width + 80, lg.height + 60), (255, 255, 255, 255)); m = Image.new("L", box.size, 0)
     ImageDraw.Draw(m).rounded_rectangle([0, 0, box.width - 1, box.height - 1], 36, fill=255); box.putalpha(m); box.alpha_composite(lg, (40, 30))
-    return im, [El(box, 540, 760, 0, "pop", 0.5), El(texto(handle, "Black", 80, COBRE), 540, 1060, 0.3, "subir", 0.4),
-                El(texto(frase, "Regular", 38, CLARO), 540, 1150, 0.5, "fade", 0.4)]
+    return im, [El(box, 540, 760, 0, "pop", 0.5), El(texto(handle, "Black", 80, COBRE, painel=False), 540, 1060, 0.3, "subir", 0.4),
+                El(texto(frase, "Regular", 38, CLARO, painel=False), 540, 1150, 0.5, "fade", 0.4)]
 
 def mascara(w, h, r):
     m = Image.new("L", (w * 2, h * 2), 0); ImageDraw.Draw(m).rounded_rectangle([0, 0, w * 2 - 1, h * 2 - 1], int(r * 2), fill=255)
     return m.resize((w, h), Image.LANCZOS)
 def lerp(a, b, k): return tuple(x + (y - x) * k for x, y in zip(a, b))
 
+def config_layout(P):
+    """Lê o layout do roteiro. estilo: 'split' (painel em cima) ou 'invertido' (rosto em cima, painel embaixo)."""
+    lay = dict(P.r.get("layout", {}))
+    inv = lay.get("estilo") == "invertido"
+    lay.setdefault("cartao", (60, 150, 1020, 1000) if inv else (40, 860, 1040, 1860))
+    lay.setdefault("recorte", (60, 60, 1020, 910) if inv else (40, 120, 1040, 1120))
+    lay.setdefault("legenda_cheio", 1330)
+    lay.setdefault("legenda_split", 920 if inv else 1560)
+    lay.setdefault("painel_centro", 1230 if inv else 450)
+    return lay
+
+def aplicar_zoom(rosto, esc, cx, cy):
+    if esc <= 1.001: return rosto
+    w, h = W / esc, H / esc
+    x0 = clamp(cx - w / 2, 0, W - w); y0 = clamp(cy - h / 2, 0, H - h)
+    return rosto.crop((int(x0), int(y0), int(x0 + w), int(y0 + h))).resize((W, H), Image.BILINEAR)
+
 def quadro(P, B, fundo, fim_im, fim_els, rosto, t):
-    lay = P.r.get("layout", {}); CARD = tuple(lay.get("cartao", (40, 860, 1040, 1860))); CROP = tuple(lay.get("recorte", (40, 120, 1040, 1120)))
+    lay = P.lay; CARD, CROP = tuple(lay["cartao"]), tuple(lay["recorte"])
     RAIO, TR, t_fim = 44, 0.35, P.dur_fala - 0.1
+    # enquadramento base (para gravações de corpo inteiro) + punch-in nas frases dos blocos com "punch"
+    z = lay.get("zoom_cheio", {}); esc = z.get("escala", 1.0); cx, cy = z.get("centro", (540, 960))
+    bloco_atual = next((b for b in B if b[0] <= t < b[1]), None)
+    if bloco_atual and bloco_atual[4].get("punch"):
+        idx = max([i for i, f in enumerate(P.frases) if f <= t] or [0]); ini = P.frases[idx]
+        alvo = 1 + bloco_atual[4].get("punch_forca", 0.12) * (idx % 2)
+        ant = 1 + bloco_atual[4].get("punch_forca", 0.12) * ((idx - 1) % 2)
+        esc *= ant + (alvo - ant) * out_cubic(clamp((t - ini) / 0.14))
+    rosto = aplicar_zoom(rosto, esc, cx, cy)
     if t >= t_fim:
         q = fim_im.copy(); compor(q, fim_els, t - t_fim); k = out_cubic(clamp((t - t_fim) / 0.3))
         if k < 1: r2 = rosto.copy(); r2.putalpha(int(255 * (1 - k))); q.alpha_composite(r2)
         return q
     k = 0.0
-    for a, b, modo, _ in B:
+    for a, b, modo, _, _o in B:
         if modo != "split": continue
         antes = any(x[1] == a and x[2] == "split" for x in B); depois = any(x[0] == b and x[2] == "split" for x in B)
         if a <= t <= b: k = max(k, 1 if antes else min(1, (t - a) / TR))
         elif b < t < b + TR and not depois: k = max(k, 1 - (t - b) / TR)
-    k = out_cubic(clamp(k))
+    k = out_cubic(clamp(k)); cortina = lay.get("transicao") == "cortina"
+    dx = int((1 - k) * W) if cortina else 0
     if k <= 0.001: q = rosto.copy()
     else:
-        q = fundo.copy(); card = [int(v) for v in lerp((0, 0, W, H), CARD, k)]; crop = [int(v) for v in lerp((0, 0, W, H), CROP, k)]
+        if cortina:
+            q = rosto.copy(); q.alpha_composite(fundo.crop((0, 0, W - dx, H)), (dx, 0)) if dx < W else None
+        else: q = fundo.copy()
+        card = [int(v) for v in lerp((0, 0, W, H), CARD, k)]; crop = [int(v) for v in lerp((0, 0, W, H), CROP, k)]
         cw, ch = card[2] - card[0], card[3] - card[1]; face = rosto.crop(crop).resize((cw, ch), Image.BILINEAR); face.putalpha(mascara(cw, ch, RAIO * k))
         sh = Image.new("RGBA", (cw + 80, ch + 80), (0, 0, 0, 0)); ImageDraw.Draw(sh).rounded_rectangle([40, 50, cw + 40, ch + 40], RAIO, fill=(0, 0, 0, int(120 * k)))
         q.alpha_composite(sh.filter(ImageFilter.GaussianBlur(18)), (card[0] - 40, card[1] - 40)); q.alpha_composite(face, (card[0], card[1]))
-    for a, b, modo, els in B:
+    for a, b, modo, els, _o in B:
         if not (a - 0.01 <= t <= b + 0.25): continue
         cam = Image.new("RGBA", (W, H), (0, 0, 0, 0)); compor(cam, [e for e in els if isinstance(e, El)], t)
         for e in els:
             if isinstance(e, tuple): desenhar_contador(cam, t, e)
         if t > b: cam.putalpha(cam.getchannel("A").point(lambda v, f=1 - (t - b) / 0.25: int(v * f)))
-        elif modo == "split" and k < 1: cam.putalpha(cam.getchannel("A").point(lambda v, f=k: int(v * f)))
-        q.alpha_composite(cam)
-    # legenda o tempo todo: no peito (tela cheia) ou na parte de baixo do cartão (tela dividida)
-    y_leg = lay.get("legenda_cheio", 1330) * (1 - k) + lay.get("legenda_split", 1560) * k
-    legenda(q, P.leg, t, y_leg)
+        elif modo == "split" and k < 1 and not cortina: cam.putalpha(cam.getchannel("A").point(lambda v, f=k: int(v * f)))
+        if modo == "split" and cortina and dx: q.alpha_composite(cam.crop((0, 0, W - dx, H)), (dx, 0))
+        else: q.alpha_composite(cam)
+    y_leg = lay["legenda_cheio"] * (1 - k) + lay["legenda_split"] * k
+    legenda(q, P.leg, t, y_leg, P.destaques)
+    if P.r.get("barra_progresso"):
+        d = ImageDraw.Draw(q); d.rectangle([0, 0, W, 12], fill=(0, 0, 0, 90)); d.rectangle([0, 0, int(W * clamp(t / t_fim)), 12], fill=COBRE)
     return q
 
 def render(P, so_quadros=None):
-    base = P.gerar_base(); B = P.blocos(); fundo = painel_fundo()
+    P.lay = config_layout(P); TEMA["claro"] = P.lay.get("tema") == "claro"
+    base = P.gerar_base(); B = P.blocos(); fundo = painel_fundo(TEMA["claro"], P.lay["painel_centro"])
     fim_im, fim_els = cartao_final(P.r.get("handle", "@mosimaadv"), P.r.get("frase_final", "Decisões do STJ explicadas de forma simples"))
     nome = P.r.get("nome", "reels")
     if so_quadros:

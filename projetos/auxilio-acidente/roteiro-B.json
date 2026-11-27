@@ -1,0 +1,64 @@
+{
+  "nome": "auxilio-acidente-B",
+  "_variacao": "B — rosto dinâmico: punch-in a cada frase, barra de progresso, tipografia cinética no painel escuro",
+  "video": "fonte/auxilio-acidente-bruto.mp4",
+  "palavras_csv": "palavras.csv",
+  "saida": "saida-B",
+  "reusar_base": true,
+  "handle": "@mosimaadv",
+  "frase_final": "Direito previdenciário explicado de forma simples",
+  "barra_progresso": true,
+
+  "cortes": [[11.85, 37.6], [58.43, 71.80], [77.45, 83.70]],
+  "duracao_alvo": 60,
+  "pausa_max": 0.28,
+  "cauda": 1.6,
+  "correcoes": {},
+  "destaques": ["acidente", "esforço", "força", "firmeza", "peso", "dirigir", "máquinas", "inss", "sequela", "definitiva", "totalmente", "incapaz", "direito", "auxílio"],
+
+  "layout": {
+    "zoom_cheio": {"escala": 1.6, "centro": [540, 600]}
+  },
+
+  "capa": {
+    "instante": 85.0, "zoom": 1.9, "deslocamento_y": 150,
+    "selo": "INSS · AUXÍLIO-ACIDENTE",
+    "linha1": "MAIS ESFORÇO PARA",
+    "linha2": "O MESMO TRABALHO?",
+    "subtitulo": "Pode ser sequela de acidente. Entenda.",
+    "nome": "[Nome da advogada]",
+    "registro": "OAB/SC nº [00.000]  ·  Moraes Silva & Massimino Advogados"
+  },
+
+  "blocos": [
+    {"de": 11.85, "ate": 21.3, "modo": "cheio", "punch": true, "elementos": [
+      {"tipo": "titulo", "l1": "FICOU COM SEQUELA", "l2": "DE UM ACIDENTE?", "t": 11.85, "anim": "nenhum", "fim": 16.4},
+      {"tipo": "titulo", "l1": "MAIS ESFORÇO PARA", "l2": "O MESMO TRABALHO?", "t": 16.6}
+    ]},
+    {"de": 21.3, "ate": 31.8, "modo": "split", "elementos": [
+      {"tipo": "chip", "texto": "SINAIS COMUNS", "t": 21.4, "y": 180},
+      {"tipo": "texto", "estilo": "grande", "texto": "FORÇA", "t": 22.9, "y": 290, "anim": "pop"},
+      {"tipo": "texto", "estilo": "grande", "texto": "FIRMEZA NAS MÃOS", "cor": "cobre", "t": 24.1, "y": 390, "anim": "pop"},
+      {"tipo": "texto", "estilo": "grande", "texto": "CARREGAR PESO", "t": 26.9, "y": 490, "anim": "pop"},
+      {"tipo": "texto", "estilo": "grande", "texto": "DIRIGIR", "cor": "cobre", "t": 28.1, "y": 590, "anim": "pop"},
+      {"tipo": "texto", "estilo": "grande", "texto": "OPERAR MÁQUINAS", "t": 29.2, "y": 690, "anim": "pop"},
+      {"tipo": "texto", "estilo": "nota", "texto": "ou ficar muito tempo em pé", "t": 30.7, "y": 780, "anim": "fade"}
+    ]},
+    {"de": 31.8, "ate": 58.43, "modo": "cheio", "punch": true, "elementos": [
+      {"tipo": "carimbo", "texto": "MITO", "t": 35.4, "y": 1110}
+    ]},
+    {"de": 58.43, "ate": 71.8, "modo": "split", "elementos": [
+      {"tipo": "chip", "texto": "AUXÍLIO-ACIDENTE", "t": 58.5, "y": 180},
+      {"tipo": "tile", "rotulo": "Voltou ao trabalho", "icone": "documento", "t": 61.4, "x": 200, "y": 410},
+      {"tipo": "tile", "rotulo": "Sequela definitiva", "icone": "alerta", "t": 64.6, "x": 540, "y": 410},
+      {"tipo": "tile", "rotulo": "Capacidade menor", "icone": "grafico_risco", "t": 66.6, "x": 880, "y": 410},
+      {"tipo": "selo", "ok": true, "t": 62.2, "x": 315, "y": 290},
+      {"tipo": "selo", "ok": true, "t": 65.4, "x": 655, "y": 290},
+      {"tipo": "selo", "ok": true, "t": 67.6, "x": 995, "y": 290},
+      {"tipo": "texto", "estilo": "destaque", "texto": "Não precisa estar totalmente incapaz", "tam": 46, "t": 69.2, "y": 660}
+    ]},
+    {"de": 77.45, "ate": "fim", "modo": "cheio", "punch": true, "elementos": [
+      {"tipo": "titulo", "l1": "SIGA", "l2": "@mosimaadv", "t": 80.6}
+    ]}
+  ]
+}

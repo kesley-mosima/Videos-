@@ -1,0 +1,60 @@
+{
+  "nome": "auxilio-acidente-A",
+  "_variacao": "A — painel claro educativo: rosto em cima, painel embaixo, checklist de sintomas, entrada em cortina",
+  "video": "fonte/auxilio-acidente-bruto.mp4",
+  "palavras_csv": "palavras.csv",
+  "saida": "saida-A",
+  "reusar_base": true,
+  "handle": "@mosimaadv",
+  "frase_final": "Direito previdenciário explicado de forma simples",
+
+  "cortes": [[11.85, 37.6], [58.43, 71.80], [77.45, 83.70]],
+  "duracao_alvo": 60,
+  "pausa_max": 0.28,
+  "cauda": 1.6,
+  "correcoes": {},
+  "destaques": ["acidente", "esforço", "força", "firmeza", "peso", "dirigir", "máquinas", "inss", "sequela", "definitiva", "totalmente", "incapaz", "direito", "auxílio"],
+
+  "layout": {
+    "estilo": "invertido",
+    "tema": "claro",
+    "transicao": "cortina",
+    "zoom_cheio": {"escala": 1.6, "centro": [540, 600]}
+  },
+
+  "capa": {
+    "instante": 85.0, "zoom": 1.9, "deslocamento_y": 150,
+    "selo": "INSS · AUXÍLIO-ACIDENTE",
+    "linha1": "VOLTOU A TRABALHAR",
+    "linha2": "COM SEQUELA?",
+    "subtitulo": "Entenda o auxílio-acidente do INSS",
+    "nome": "[Nome da advogada]",
+    "registro": "OAB/SC nº [00.000]  ·  Moraes Silva & Massimino Advogados"
+  },
+
+  "blocos": [
+    {"de": 11.85, "ate": 16.4, "modo": "cheio", "elementos": [
+      {"tipo": "titulo", "l1": "VOLTOU A TRABALHAR", "l2": "DEPOIS DE UM ACIDENTE?", "t": 11.85, "anim": "nenhum"}
+    ]},
+    {"de": 16.4, "ate": 31.8, "modo": "split", "elementos": [
+      {"tipo": "chip", "texto": "SINAIS DE ALERTA", "t": 16.5, "y": 1040},
+      {"tipo": "check", "texto": "Mais esforço para o mesmo trabalho", "t": 16.8, "t_ok": 19.3, "y": 1120},
+      {"tipo": "check", "texto": "Perdeu força ou firmeza nas mãos", "t": 21.6, "t_ok": 24.4, "y": 1205},
+      {"tipo": "check", "texto": "Dificuldade para carregar peso", "t": 25.8, "t_ok": 27.4, "y": 1290},
+      {"tipo": "check", "texto": "Dirigir, operar máquinas, ficar em pé", "t": 28.1, "t_ok": 31.0, "y": 1375}
+    ]},
+    {"de": 31.8, "ate": 58.43, "modo": "cheio", "elementos": [
+      {"tipo": "carimbo", "texto": "MITO", "t": 35.4, "y": 1110}
+    ]},
+    {"de": 58.43, "ate": 71.8, "modo": "split", "elementos": [
+      {"tipo": "chip", "texto": "AUXÍLIO-ACIDENTE", "t": 58.5, "y": 1040},
+      {"tipo": "coluna", "titulo": "TRABALHANDO", "texto": "pode receber", "cor": "verde", "t": 61.4, "x": 290, "y": 1150},
+      {"tipo": "coluna", "titulo": "COM SEQUELA", "texto": "definitiva", "cor": "cobre", "t": 64.4, "x": 790, "y": 1150},
+      {"tipo": "texto", "estilo": "destaque", "texto": "que reduziu a capacidade de trabalho", "tam": 40, "t": 66.2, "y": 1265, "anim": "fade"},
+      {"tipo": "texto", "estilo": "corpo", "texto": "Incapacidade total NÃO é exigida", "t": 69.2, "y": 1365}
+    ]},
+    {"de": 77.45, "ate": "fim", "modo": "cheio", "elementos": [
+      {"tipo": "titulo", "l1": "SIGA", "l2": "@mosimaadv", "t": 80.6}
+    ]}
+  ]
+}

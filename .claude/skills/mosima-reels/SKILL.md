@@ -64,6 +64,25 @@ Campos do projeto: `nome`, `video`, `palavras_csv`, `saida`, `handle`, `frase_fi
 `correcoes_indice` (índice do CSV→texto), `reusar_base` (true para não reprocessar o áudio/vídeo base),
 `layout` opcional (`cartao`, `recorte` — ajuste o `recorte` se o rosto estiver em outra altura —, `legenda_cheio`, `legenda_split`).
 
+**Variações de forma** (para não repetir o mesmo visual e para testes A/B em tráfego pago):
+- `layout.estilo`: `"split"` (painel em cima, padrão) ou `"invertido"` (rosto em cima no cartão, painel embaixo, y≈1030–1450; legenda em y≈920).
+- `layout.tema`: `"escuro"` (padrão) ou `"claro"` (painel areia; textos brancos viram verde-escuro automaticamente).
+- `layout.transicao`: `"cortina"` (painel entra deslizando da direita) — padrão é o cartão encolher.
+- `layout.zoom_cheio`: `{"escala": 1.6, "centro": [540, 600]}` para gravações de corpo inteiro (enquadra rosto e tronco).
+- `"punch": true` num bloco de tela cheia: zoom de 12% alternado a cada frase (punch-in). `punch_forca` ajusta.
+- `"barra_progresso": true`: barra cobre no topo, indicando quanto falta (retenção).
+- `"destaques": [...]`: palavras da legenda em cobre (números, sintomas, "não", direito).
+- Elementos extras: `carimbo` (`texto`, ex. "MITO", girado, cobre) e `check` (`texto`, `t_ok` — caixa que ganha ✔).
+- Primeiro quadro: use `"anim": "nenhum"` no título do gancho para ele já aparecer no quadro 0 (anúncios).
+
+**Técnicas de atração para tráfego pago** (aplicar quando o vídeo for impulsionado):
+gancho escrito no quadro 0 em forma de pergunta de identificação; troca visual a cada 2–4 s (punch-in, painel,
+carimbo); checklist de sintomas/situações que o público reconhece; quebra de mito ("muita gente acredita… MITO");
+legenda sempre com palavras-chave em cobre (assistido sem som); 40–60 s; CTA informativo (seguir o perfil).
+Produza **duas variações (A/B)** com mesmos cortes e formas diferentes, e capas com chamadas diferentes.
+OAB: impulsionamento de conteúdo informativo é admitido; evite promessa de resultado, "ganhe", valores,
+urgência artificial e chamada direta para contratação; revise o texto do anúncio no gerenciador de anúncios também.
+
 `capa`: `instante` (segundo do original com o advogado **sorrindo** — procure em pausas e no fim das tomadas),
 `selo`, `linha1`, `linha2`, `subtitulo`, `nome`, `registro`, opcionais `zoom` (1.25) e `deslocamento_y` (60).
 
