@@ -1,6 +1,6 @@
 {
   "nome": "auxilio-acidente-A",
-  "_variacao": "A (v3) — editorial: rosto em tela cheia, título com serifa, cortes P&B de ~3 s com frase de impacto, manchetes condensadas, legenda karaokê com ritmo, @ no canto",
+  "_variacao": "A (v4) — editorial: rosto em tela cheia sem filtro, espaço acima da cabeça para título e manchetes, legenda karaokê embaixo, @ no canto",
   "video": "fonte/auxilio-acidente-bruto.mp4",
   "palavras_csv": "palavras.csv",
   "saida": "saida-A",
@@ -25,13 +25,16 @@
   "correcoes": {},
   "layout": {
     "zoom_cheio": {
-      "escala": 1.6,
+      "escala": 1.45,
       "centro": [
         540,
-        600
+        620
       ]
     },
-    "legenda_cheio": 1290
+    "legenda_cheio": 1290,
+    "descer": 270,
+    "marca_y": 130,
+    "escurecer_topo": true
   },
   "capa": {
     "instante": 85.0,
@@ -57,19 +60,14 @@
           "t": 11.85,
           "anim": "nenhum",
           "fim": 16.3,
-          "y": 1110
-        },
-        {
-          "tipo": "pb",
-          "t": 16.45,
-          "fim": 19.4
+          "y": 310
         },
         {
           "tipo": "manchete",
           "texto": "“MAIS ESFORÇO PARA\nO MESMO TRABALHO?”",
           "t": 16.45,
           "fim": 19.4,
-          "y": 1100
+          "y": 310
         },
         {
           "tipo": "manchete",
@@ -77,7 +75,7 @@
           "tam": 50,
           "t": 22.9,
           "fim": 25.6,
-          "y": 1110
+          "y": 310
         },
         {
           "tipo": "manchete",
@@ -85,7 +83,7 @@
           "tam": 50,
           "t": 26.8,
           "fim": 30.3,
-          "y": 1110
+          "y": 310
         },
         {
           "tipo": "manchete",
@@ -93,19 +91,14 @@
           "tam": 50,
           "t": 30.6,
           "fim": 31.8,
-          "y": 1110
-        },
-        {
-          "tipo": "pb",
-          "t": 32.25,
-          "fim": 35.3
+          "y": 310
         },
         {
           "tipo": "manchete",
           "texto": "“VOLTEI A TRABALHAR,\nENTÃO NÃO TENHO DIREITO”",
           "t": 32.25,
           "fim": 35.3,
-          "y": 1100
+          "y": 310
         },
         {
           "tipo": "manchete",
@@ -113,19 +106,14 @@
           "tam": 64,
           "t": 35.4,
           "fim": 37.6,
-          "y": 1110
-        },
-        {
-          "tipo": "pb",
-          "t": 58.43,
-          "fim": 61.4
+          "y": 310
         },
         {
           "tipo": "manchete",
           "texto": "“EXISTE UM BENEFÍCIO\nPARA ISSO”",
           "t": 58.43,
           "fim": 61.4,
-          "y": 1100
+          "y": 310
         },
         {
           "tipo": "manchete",
@@ -133,7 +121,7 @@
           "tam": 64,
           "t": 61.5,
           "fim": 63.8,
-          "y": 1110
+          "y": 310
         },
         {
           "tipo": "manchete",
@@ -141,7 +129,7 @@
           "tam": 46,
           "t": 64.1,
           "fim": 68.3,
-          "y": 1110
+          "y": 310
         },
         {
           "tipo": "manchete",
@@ -149,14 +137,14 @@
           "tam": 50,
           "t": 69.2,
           "fim": 71.8,
-          "y": 1110
+          "y": 310
         },
         {
           "tipo": "manchete",
           "texto": "SIGA @mosimaadv",
           "tam": 60,
           "t": 80.8,
-          "y": 1110
+          "y": 310
         }
       ]
     }

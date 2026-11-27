@@ -264,7 +264,7 @@ def manchete(txt, c=COBRE, tam=58):
     linhas = txt.split("\n")
     while max(F("Oswald", tam).getlength(l) for l in linhas) > 880: tam -= 2
     return com_sombra(texto(txt, "Oswald", tam, c, esp=1.08, painel=False), 10, 0.9)
-def titulo_serifa(l1, l2, c1="#F1E4D6", c2=COBRE):
+def titulo_serifa(l1, l2, c1="#F1E4D6", c2="#E8A37F"):
     t1, t2 = 62, 70
     while F("Playfair", t1).getlength(l1) > 820: t1 -= 2
     while F("PlayfairItalic", t2).getlength(l2) > 820: t2 -= 2
@@ -418,6 +418,12 @@ class Projeto:
         elif tp == "numero": spr = numero(e["texto"]); x = e.get("x", 110); y = e.get("y", 300); anim = anim or "pop"; dur = e.get("dur", 0.3)
         elif tp == "manchete": spr = manchete(e["texto"], cor(e.get("cor", COBRE)), e.get("tam", 58)); y = e.get("y", 330); anim = anim or "fade"; dur = e.get("dur", 0.25)
         elif tp == "titulo_serifa": spr = titulo_serifa(e["l1"], e["l2"]); y = e.get("y", 330); anim = anim or "fade"; dur = e.get("dur", 0.4)
+        elif tp == "faixa":
+            f_ = F("Black", e.get("tam", 64)); w_ = int(f_.getlength(e["texto"])) + 70
+            def d_(dr, s_, txt=e["texto"], tam=e.get("tam", 64), w_=w_):
+                dr.rounded_rectangle([0, 0, (w_ - 1) * s_, (tam + 44) * s_], 20 * s_, fill=COBRE)
+                dr.text((w_ * s_ // 2, (tam + 44) * s_ // 2), txt, font=F("Black", tam * s_), fill=BRANCO, anchor="mm")
+            spr = com_sombra(sprite(w_, e.get("tam", 64) + 46, d_), 10, 0.6); anim = anim or "pop"
         elif tp == "pb": return [("pb", t, fim if fim is not None else t + 1.5)]
         elif tp == "moedas":
             return [El(ic_moeda(e.get("r", 40)), x + i * e.get("passo", 60), y, t + i * 0.15, "cair", 0.4, loop="flutuar", amp=5, de=120, fim=fim)
@@ -563,6 +569,22 @@ def quadro(P, B, fundo, fim_im, fim_els, rosto, t):
         ant = 1 + bloco_atual[4].get("punch_forca", 0.12) * ((idx - 1) % 2)
         esc *= ant + (alvo - ant) * out_cubic(clamp((t - ini) / 0.14))
     rosto = aplicar_zoom(rosto, esc, cx, cy)
+    desce = int(lay.get("descer", 0))
+    if desce:
+        # abre espaço acima da cabeça: desce a imagem e preenche o topo com o próprio fundo desfocado
+        fundo_ = rosto.resize((W // 6, H // 6), Image.BILINEAR).filter(ImageFilter.GaussianBlur(6)).resize((W, H), Image.BILINEAR)
+        if "MASC_DESCE" not in CACHE:
+            m = Image.new("L", (W, H - desce), 255); dm = ImageDraw.Draw(m)
+            for yy in range(90): dm.line([(0, yy), (W, yy)], fill=int(255 * yy / 90))
+            CACHE["MASC_DESCE"] = m
+        topo = rosto.crop((0, 0, W, H - desce)); topo.putalpha(CACHE["MASC_DESCE"])
+        fundo_.alpha_composite(topo, (0, desce)); rosto = fundo_
+    if lay.get("escurecer_topo"):
+        if "GRAD_TOPO" not in CACHE:
+            g_ = Image.new("RGBA", (W, 640), (0, 0, 0, 0)); dg = ImageDraw.Draw(g_)
+            for yy in range(640): dg.line([(0, yy), (W, yy)], fill=(12, 22, 24, int(185 * (1 - yy / 640) ** 1.4)))
+            CACHE["GRAD_TOPO"] = g_
+        rosto = rosto.copy(); rosto.alpha_composite(CACHE["GRAD_TOPO"], (0, 0))
     pb = [(e[1], e[2]) for b in B for e in b[3] if isinstance(e, tuple) and e[0] == "pb"]
     if any(a <= t <= b for a, b in pb):
         g = rosto.convert("L").point(lambda v: int(v * 0.82)).convert("RGBA")
@@ -606,7 +628,7 @@ def quadro(P, B, fundo, fim_im, fim_els, rosto, t):
     if P.r.get("marca_dagua"):
         k_ = ("MD", P.r.get("handle"))
         if k_ not in CACHE: CACHE[k_] = com_sombra(texto(P.r.get("handle", "@mosimaadv"), "Bold", 26, BRANCO, painel=False), 6, 0.8)
-        md = CACHE[k_]; q.alpha_composite(md, (W - md.width - 30, 200))
+        md = CACHE[k_]; q.alpha_composite(md, (W - md.width - 30, lay.get("marca_y", 200)))
     if P.r.get("barra_progresso"):
         d = ImageDraw.Draw(q); d.rectangle([0, 0, W, 12], fill=(0, 0, 0, 90)); d.rectangle([0, 0, int(W * clamp(t / t_fim)), 12], fill=COBRE)
     return q

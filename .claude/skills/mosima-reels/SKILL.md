@@ -88,7 +88,7 @@ sem tela dividida. Use `"legenda_estilo": "frase"` (legenda discreta por frase, 
 - `numero` (`texto` "01"…): selo de capítulo — disponível, mas não usar por padrão.
 - `pb` (`t`, `fim`): ~3 s em preto e branco com o topo escurecido, para abrir capítulo (com `manchete` entre aspas no mesmo intervalo).
 - `manchete` (`texto`, `tam`, `cor`): frase curta em Oswald condensada, cobre, y≈1110; entre aspas no corte P&B.
-Mantenha títulos sobre o tronco (y≈1100), não sobre a cabeça; legenda em y≈1290. Exemplo: `projetos/auxilio-acidente/roteiro-A.json`.
+Títulos e manchetes ficam **acima da cabeça** (y≈310), longe da legenda (y≈1290): use `layout.descer` (ex.: 270) para descer a imagem e abrir espaço no topo (preenchido com o fundo desfocado) e `layout.escurecer_topo: true` para dar contraste; `layout.marca_y` (130) sobe o @. Sem filtro preto e branco no modelo A (o escritório preferiu a imagem sempre colorida). Para destacar uma frase no painel, use `faixa` (`texto`, `tam`: caixa cobre sólida com texto branco, pode pulsar). Exemplo: `projetos/auxilio-acidente/roteiro-A.json`.
 
 **Técnicas de atração para tráfego pago** (aplicar quando o vídeo for impulsionado):
 gancho escrito no quadro 0 em forma de pergunta de identificação; troca visual a cada 2–4 s (punch-in, painel,

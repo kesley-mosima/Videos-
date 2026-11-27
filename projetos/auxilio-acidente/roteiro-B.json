@@ -38,7 +38,9 @@
     "direito",
     "auxílio",
     "mito",
-    "especialista"
+    "especialista",
+    "pé",
+    "tempo"
   ],
   "layout": {
     "zoom_cheio": {
@@ -85,7 +87,7 @@
     },
     {
       "de": 21.3,
-      "ate": 31.8,
+      "ate": 33.3,
       "modo": "split",
       "elementos": [
         {
@@ -137,17 +139,19 @@
           "anim": "pop"
         },
         {
-          "tipo": "texto",
-          "estilo": "nota",
-          "texto": "ou ficar muito tempo em pé",
-          "t": 30.7,
-          "y": 780,
-          "anim": "fade"
+          "tipo": "faixa",
+          "texto": "FICAR MUITO TEMPO EM PÉ",
+          "t": 30.6,
+          "y": 805,
+          "anim": "pop",
+          "loop": "pulso",
+          "amp": 0.04,
+          "tam": 58
         }
       ]
     },
     {
-      "de": 31.8,
+      "de": 33.3,
       "ate": 58.43,
       "modo": "cheio",
       "punch": true,
