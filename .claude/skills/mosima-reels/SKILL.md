@@ -56,6 +56,9 @@ sem captação, sem promessa de resultado, CTA informativo ("siga o perfil").
   de acelerar mais de 8%.
 - `cortes` = lista de intervalos **mantidos** em segundos do original. O motor ainda enxuga pausas internas.
 
+- **Checagem de erros de gravação (obrigatória):** depois de escolher as tomadas, transcreva **cada trecho mantido isoladamente** com Whisper e `initial_prompt="Transcrição literal, com hesitações, repetições e palavras cortadas."`. A transcrição da gravação inteira às vezes "cola" uma tentativa com erro na tentativa boa seguinte (ex.: "ficou… lá…" + recomeço); a transcrição isolada revela. Corrija os tempos de palavra no CSV com os da transcrição isolada, senão o motor descarta a tomada boa.
+- **Copy da agência:** quando houver copy (PDF), siga-a frase a frase e confira se todas estão no vídeo; procure a gravação completa (ex.: arquivo "-longo") antes de concluir que uma frase não foi gravada.
+
 ### 5. Escrever o roteiro JSON
 Copie `exemplos/tema-1285/roteiro.json` e ajuste. Todos os tempos (`t`, `fim`, `de`, `ate`, `t2`) são
 **segundos do vídeo original**, tirados do CSV (o motor converte para a linha do tempo editada).
@@ -130,6 +133,8 @@ python3 scripts/reels.py roteiro.json --quadros 2,17,30,47,60
 ```
 Monte uma folha de contato dos PNGs e **olhe**: sobreposição de textos, rosto coberto, legenda legível,
 capa com rosto e título dentro da área 4:5 (retângulo vermelho em `capa-grade.png`).
+
+**Automático no motor:** gravações **HDR do iPhone** (HLG/PQ, BT.2020) recebem *tone mapping* (mobius) para SDR — sem isso a pele fica pálida; nunca aplique filtros que mudem a cor da pele. Emendas entre tomadas têm **dissolução de 0,22 s** na imagem (`transicao_suave`, 0 desliga) e **fade de 35 ms** no áudio (`fade_audio`). Para postar: `"crf": 16, "preset": "slow"`. Ao concatenar arquivos-fonte HDR, mantenha 10 bits e as tags de cor (`-pix_fmt yuv420p10le -color_primaries bt2020 -color_trc arib-std-b67 -colorspace bt2020nc`).
 
 ### 7. Renderizar e verificar
 ```
