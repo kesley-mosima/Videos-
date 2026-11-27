@@ -30,7 +30,7 @@
     ],
     [
       224.56,
-      233.4
+      233.22
     ],
     [
       346.45,
@@ -41,7 +41,7 @@
       363.9
     ]
   ],
-  "duracao_alvo": 62,
+  "duracao_alvo": 64,
   "pausa_max": 0.28,
   "cauda": 2.2,
   "legenda_estilo": "karaoke",
@@ -202,7 +202,7 @@
           "texto": "NEM TODO SEGURADO\nTEM DIREITO",
           "tam": 60,
           "t": 229.7,
-          "fim": 233.4,
+          "fim": 233.22,
           "y": 310
         },
         {

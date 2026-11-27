@@ -30,7 +30,7 @@
     ],
     [
       224.56,
-      233.4
+      233.22
     ],
     [
       346.45,
@@ -41,7 +41,7 @@
       363.9
     ]
   ],
-  "duracao_alvo": 62,
+  "duracao_alvo": 64,
   "pausa_max": 0.28,
   "cauda": 2.2,
   "legenda_estilo": "karaoke",
@@ -294,7 +294,7 @@
     },
     {
       "de": 224.56,
-      "ate": 233.4,
+      "ate": 233.22,
       "modo": "cheio",
       "punch": true,
       "elementos": [
