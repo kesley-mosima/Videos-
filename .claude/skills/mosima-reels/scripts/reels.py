@@ -377,10 +377,20 @@ class Projeto:
         limpeza = ("pan=mono|c0=0.5*c0+0.5*c1,highpass=f=85,lowpass=f=15000,afftdn=nr=12:nf=-42:tn=1,deesser=i=0.4,"
                    "equalizer=f=250:t=q:w=1.2:g=-2,equalizer=f=3500:t=q:w=1.5:g=2,"
                    f"acompressor=threshold=-24dB:ratio=3:attack=6:release=90:makeup=2,atempo={self.vel:.4f},apad=pad_dur={self.cauda}")
-        fa = f"[0:a]aselect='{sel}',asetpts=N/SR/TB,{limpeza}"
-        fv = (f"[0:v]select='{sel}',setpts=N/({FPS}*TB),setpts=PTS/{self.vel:.4f},scale={W}:{H}:force_original_aspect_ratio=increase:flags=lanczos,"
+        # áudio: cada trecho com fade de 35 ms nas pontas (emendas sem estalo); vídeo: select num único fluxo (pouca memória)
+        xa = self.r.get("fade_audio", 0.035); partes, rot = [], []
+        for k, (s_, e_) in enumerate(self.trechos):
+            partes.append(f"[0:a]atrim={s_:.3f}:{e_:.3f},asetpts=PTS-STARTPTS,afade=t=in:d={xa},afade=t=out:st={max(0, e_ - s_ - xa):.3f}:d={xa}[a{k}]")
+            rot.append(f"[a{k}]")
+        fa = ";".join(partes) + ";" + "".join(rot) + f"concat=n={len(self.trechos)}:v=0:a=1,{limpeza}"
+        # cor: gravações HDR do iPhone (HLG/PQ, BT.2020) precisam de tone mapping para SDR, senão a pele fica pálida
+        trc = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=color_transfer",
+                              "-of", "csv=p=0", self.video], capture_output=True, text=True).stdout.strip()
+        cor_ = ("zscale=t=linear:npl=203,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=mobius:desat=0,"
+                "zscale=t=bt709:m=bt709:r=tv,format=yuv420p,") if trc in ("arib-std-b67", "smpte2084") else ""
+        fv = (f"[0:v]select='{sel}',setpts=N/({FPS}*TB),setpts=PTS/{self.vel:.4f},{cor_}scale={W}:{H}:force_original_aspect_ratio=increase:flags=lanczos,"
               f"crop={W}:{H},fps={FPS},tpad=stop_mode=clone:stop_duration={self.cauda}[vo]")
-        r = subprocess.run(["ffmpeg", "-hide_banner", "-i", self.video, "-vn", "-filter_complex", fa + ",loudnorm=I=-14:print_format=json[ao]",
+        r = subprocess.run(["ffmpeg", "-hide_banner", "-i", self.video, "-filter_complex", fa + ",loudnorm=I=-14:print_format=json[ao]",
                             "-map", "[ao]", "-f", "null", "-"], capture_output=True, text=True)
         if r.returncode: sys.exit(r.stderr[-2000:])
         m = json.loads(r.stderr[r.stderr.rindex("{"):r.stderr.rindex("}") + 1]); ganho = -14.0 - float(m["input_i"])
@@ -649,11 +659,21 @@ def render(P, so_quadros=None):
                             "-i", base, "-map", "0:v", "-map", "1:a", "-c:v", "libx264", "-preset", P.r.get("preset", "medium"), "-crf", str(P.r.get("crf", 19)),
                             "-profile:v", "high", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "256k", "-ar", "48000", "-shortest", "-movflags", "+faststart", saida], stdin=subprocess.PIPE)
     tam, n = W * H * 4, 0
+    # emendas mais sutis: dissolução curta da imagem (o último quadro do trecho anterior se desfaz no novo)
+    xf = P.r.get("transicao_suave", 0.22); emendas, acc = [], 0.0
+    for s_, e_ in P.trechos[:-1]: acc += e_ - s_; emendas.append(acc / P.vel)
+    anterior, congelado, de_emenda = None, None, None
     while True:
         buf = dec.stdout.read(tam)
         if len(buf) < tam: break
         t = n / FPS; n += 1
-        enc.stdin.write(quadro(P, B, fundo, fim_im, fim_els, Image.frombytes("RGBA", (W, H), buf), t).tobytes())
+        rosto = Image.frombytes("RGBA", (W, H), buf); bruto = rosto
+        b_ = next((b for b in emendas if b <= t < b + xf), None)
+        if b_ is not None and anterior is not None and xf > 0:
+            if de_emenda != b_: congelado, de_emenda = anterior, b_
+            rosto = Image.blend(congelado, rosto, out_cubic(clamp((t - b_) / xf)))
+        anterior = bruto
+        enc.stdin.write(quadro(P, B, fundo, fim_im, fim_els, rosto, t).tobytes())
         if n % 300 == 0: print(f"  {t:5.1f}s", flush=True)
     enc.stdin.close(); enc.wait(); dec.wait()
     ts = lambda t: f"{int(t // 3600):02d}:{int(t % 3600 // 60):02d}:{int(t % 60):02d},{int(t * 1000 % 1000):03d}"
