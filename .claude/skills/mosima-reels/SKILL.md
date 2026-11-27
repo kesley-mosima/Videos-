@@ -75,12 +75,18 @@ Campos do projeto: `nome`, `video`, `palavras_csv`, `saida`, `handle`, `frase_fi
 - Elementos extras: `carimbo` (`texto`, ex. "MITO", girado, cobre) e `check` (`texto`, `t_ok` — caixa que ganha ✔).
 - Primeiro quadro: use `"anim": "nenhum"` no título do gancho para ele já aparecer no quadro 0 (anúncios).
 
+**Legenda com ritmo (padrão recomendado):** `"legenda_estilo": "karaoke"`: grupos de até 4 palavras que entram
+com um "pop"; a palavra que está sendo falada fica em cobre e cresce no instante em que é dita; palavras em
+`destaques` ficam em cobre o grupo todo. Alternativas: `"frase"` (discreta, por frase) e o padrão curto (1–3 palavras).
+Cortes em preto e branco (`pb`) devem durar **~3 s** com a frase visível o tempo todo; menos que isso não dá para ler.
+Evite selos numerados ("01/02/03") — o escritório achou desnecessários.
+
 **Estilo editorial** (mais sóbrio; aprovado pelo escritório como "modelo A"): rosto em tela cheia o tempo todo,
 sem tela dividida. Use `"legenda_estilo": "frase"` (legenda discreta por frase, 2 linhas), `"marca_dagua": true`
 (@ pequeno no canto superior direito) e os elementos:
 - `titulo_serifa` (`l1`, `l2`): abertura elegante com Playfair (2ª linha em itálico cobre), y≈1110 (sobre o tronco).
-- `numero` (`texto` "01", "02"…): selo do capítulo no canto superior esquerdo, com `fim` no fim do capítulo.
-- `pb` (`t`, `fim`): 1–2 s em preto e branco com o topo escurecido, para abrir capítulo.
+- `numero` (`texto` "01"…): selo de capítulo — disponível, mas não usar por padrão.
+- `pb` (`t`, `fim`): ~3 s em preto e branco com o topo escurecido, para abrir capítulo (com `manchete` entre aspas no mesmo intervalo).
 - `manchete` (`texto`, `tam`, `cor`): frase curta em Oswald condensada, cobre, y≈1110; entre aspas no corte P&B.
 Mantenha títulos sobre o tronco (y≈1100), não sobre a cabeça; legenda em y≈1290. Exemplo: `projetos/auxilio-acidente/roteiro-A.json`.
 

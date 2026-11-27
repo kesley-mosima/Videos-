@@ -1,6 +1,6 @@
 {
   "nome": "auxilio-acidente-A",
-  "_variacao": "A (v2) — editorial: rosto em tela cheia o tempo todo, título com serifa, capítulos numerados 01/02/03, cortes em preto e branco com frase de impacto, manchetes condensadas, legenda por frase, @ no canto",
+  "_variacao": "A (v3) — editorial: rosto em tela cheia, título com serifa, cortes P&B de ~3 s com frase de impacto, manchetes condensadas, legenda karaokê com ritmo, @ no canto",
   "video": "fonte/auxilio-acidente-bruto.mp4",
   "palavras_csv": "palavras.csv",
   "saida": "saida-A",
@@ -8,7 +8,7 @@
   "handle": "@mosimaadv",
   "frase_final": "Direito previdenciário explicado de forma simples",
   "marca_dagua": true,
-  "legenda_estilo": "frase",
+  "legenda_estilo": "karaoke",
   "cortes": [
     [
       11.85,
@@ -16,10 +16,6 @@
     ],
     [
       58.43,
-      71.8
-    ],
-    [
-      77.45,
       83.7
     ]
   ],
@@ -66,20 +62,14 @@
         {
           "tipo": "pb",
           "t": 16.45,
-          "fim": 18.0
+          "fim": 19.4
         },
         {
           "tipo": "manchete",
           "texto": "“MAIS ESFORÇO PARA\nO MESMO TRABALHO?”",
           "t": 16.45,
-          "fim": 18.0,
+          "fim": 19.4,
           "y": 1100
-        },
-        {
-          "tipo": "numero",
-          "texto": "01",
-          "t": 16.45,
-          "fim": 31.8
         },
         {
           "tipo": "manchete",
@@ -108,20 +98,14 @@
         {
           "tipo": "pb",
           "t": 32.25,
-          "fim": 33.9
+          "fim": 35.3
         },
         {
           "tipo": "manchete",
           "texto": "“VOLTEI A TRABALHAR,\nENTÃO NÃO TENHO DIREITO”",
           "t": 32.25,
-          "fim": 33.9,
+          "fim": 35.3,
           "y": 1100
-        },
-        {
-          "tipo": "numero",
-          "texto": "02",
-          "t": 32.25,
-          "fim": 37.6
         },
         {
           "tipo": "manchete",
@@ -134,26 +118,20 @@
         {
           "tipo": "pb",
           "t": 58.43,
-          "fim": 60.0
+          "fim": 61.4
         },
         {
           "tipo": "manchete",
           "texto": "“EXISTE UM BENEFÍCIO\nPARA ISSO”",
           "t": 58.43,
-          "fim": 60.0,
+          "fim": 61.4,
           "y": 1100
-        },
-        {
-          "tipo": "numero",
-          "texto": "03",
-          "t": 58.43,
-          "fim": 71.8
         },
         {
           "tipo": "manchete",
           "texto": "AUXÍLIO-ACIDENTE",
           "tam": 64,
-          "t": 60.1,
+          "t": 61.5,
           "fim": 63.8,
           "y": 1110
         },
@@ -182,5 +160,23 @@
         }
       ]
     }
+  ],
+  "destaques": [
+    "acidente",
+    "esforço",
+    "força",
+    "firmeza",
+    "peso",
+    "dirigir",
+    "máquinas",
+    "inss",
+    "sequela",
+    "definitiva",
+    "totalmente",
+    "incapaz",
+    "direito",
+    "auxílio",
+    "mito",
+    "especialista"
   ]
 }

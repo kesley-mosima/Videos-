@@ -3,86 +3,182 @@
 Você sofreu um acidente
 
 2
-00:00:01,679 --> 00:00:03,561
-recebeu alta e conseguiu voltar ao
+00:00:01,679 --> 00:00:03,141
+recebeu alta e conseguiu
 
 3
-00:00:03,561 --> 00:00:06,260
-trabalho, mas desde então precisa fazer
+00:00:03,141 --> 00:00:04,301
+voltar ao trabalho
 
 4
-00:00:06,260 --> 00:00:09,022
-mais esforço para exercer a mesma atividade?
+00:00:04,301 --> 00:00:05,540
+mas desde então
 
 5
-00:00:09,022 --> 00:00:10,422
-Pode ser que você tenha perdido a
+00:00:05,540 --> 00:00:06,580
+precisa fazer mais
 
 6
-00:00:10,422 --> 00:00:12,443
-força, a firmeza nas mãos
+00:00:06,580 --> 00:00:07,762
+esforço para exercer
 
 7
-00:00:12,443 --> 00:00:14,763
-tenha dificuldade para carregar peso
+00:00:07,762 --> 00:00:09,022
+a mesma atividade?
 
 8
-00:00:14,763 --> 00:00:17,304
-dirigir, operar máquinas ou até mesmo
+00:00:09,022 --> 00:00:09,742
+Pode ser que você
 
 9
-00:00:17,304 --> 00:00:18,544
-para ficar muito tempo em pé
+00:00:09,742 --> 00:00:11,021
+tenha perdido a força
 
 10
-00:00:18,544 --> 00:00:20,604
-Muita gente acredita que por ter voltado
+00:00:11,021 --> 00:00:11,823
+a firmeza nas
 
 11
-00:00:20,604 --> 00:00:22,325
-ao trabalho não tem direito a um
+00:00:11,823 --> 00:00:12,443
+mãos
 
 12
-00:00:22,325 --> 00:00:23,744
-benefício do INSS
+00:00:12,443 --> 00:00:14,063
+tenha dificuldade para carregar
 
 13
-00:00:23,744 --> 00:00:26,366
-Mas o auxílio acidente existe justamente
+00:00:14,063 --> 00:00:14,763
+peso
 
 14
-00:00:26,366 --> 00:00:28,166
-para situações em que a pessoa voltou
+00:00:14,763 --> 00:00:15,523
+dirigir
 
 15
-00:00:28,166 --> 00:00:30,287
-a trabalhar, mas ficou com uma sequela
+00:00:15,523 --> 00:00:16,964
+operar máquinas ou até
 
 16
-00:00:30,287 --> 00:00:32,508
-definitiva que reduziu sua capacidade
+00:00:16,964 --> 00:00:17,624
+mesmo para ficar
 
 17
-00:00:32,508 --> 00:00:33,509
-para o trabalho
+00:00:17,624 --> 00:00:18,544
+muito tempo em pé
 
 18
-00:00:33,509 --> 00:00:36,190
-Não é necessário ficar totalmente incapaz
+00:00:18,544 --> 00:00:19,684
+Muita gente acredita
 
 19
-00:00:36,190 --> 00:00:38,170
-Se você se identifica com essa situação
+00:00:19,684 --> 00:00:20,184
+que por ter
 
 20
-00:00:38,170 --> 00:00:40,051
-procure um advogado especialista para
+00:00:20,184 --> 00:00:21,525
+voltado ao trabalho
 
 21
-00:00:40,051 --> 00:00:41,452
-saber se você tem direito ao auxílio
+00:00:21,525 --> 00:00:22,244
+não tem direito
 
 22
-00:00:41,452 --> 00:00:42,282
+00:00:22,244 --> 00:00:22,825
+a um benefício
+
+23
+00:00:22,825 --> 00:00:23,744
+do INSS
+
+24
+00:00:23,744 --> 00:00:24,305
+Mas o auxílio
+
+25
+00:00:24,305 --> 00:00:26,366
+acidente existe justamente
+
+26
+00:00:26,366 --> 00:00:27,347
+para situações em que
+
+27
+00:00:27,347 --> 00:00:28,166
+a pessoa voltou
+
+28
+00:00:28,166 --> 00:00:29,106
+a trabalhar
+
+29
+00:00:29,106 --> 00:00:29,847
+mas ficou com uma
+
+30
+00:00:29,847 --> 00:00:31,147
+sequela definitiva
+
+31
+00:00:31,147 --> 00:00:31,887
+que reduziu sua
+
+32
+00:00:31,887 --> 00:00:33,509
+capacidade para o trabalho
+
+33
+00:00:33,509 --> 00:00:34,610
+Não é necessário
+
+34
+00:00:34,610 --> 00:00:36,190
+ficar totalmente incapaz
+
+35
+00:00:36,190 --> 00:00:36,731
+O que precisa
+
+36
+00:00:36,731 --> 00:00:38,511
+ser avaliado é quanto
+
+37
+00:00:38,511 --> 00:00:39,492
+que essa sequela
+
+38
+00:00:39,492 --> 00:00:40,592
+reduziu a capacidade
+
+39
+00:00:40,592 --> 00:00:41,492
+para o trabalho
+
+40
+00:00:41,492 --> 00:00:42,552
+Se você se identifica
+
+41
+00:00:42,552 --> 00:00:43,472
+com essa situação
+
+42
+00:00:43,472 --> 00:00:44,393
+procure um advogado
+
+43
+00:00:44,393 --> 00:00:45,613
+especialista para saber
+
+44
+00:00:45,613 --> 00:00:46,073
+se você tem
+
+45
+00:00:46,073 --> 00:00:46,754
+direito ao auxílio
+
+46
+00:00:46,754 --> 00:00:47,534
 acidente
 

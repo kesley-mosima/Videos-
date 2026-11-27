@@ -319,6 +319,7 @@ class Projeto:
 
     def grupos(self):
         if self.r.get("legenda_estilo") == "frase": return self.grupos_frase()
+        if self.r.get("legenda_estilo") == "karaoke": return self.grupos_karaoke()
         return self.grupos_curtos()
 
     def grupos_frase(self):
@@ -333,6 +334,22 @@ class Projeto:
             fim = g[-1][1] + 0.35
             if i + 1 < len(out): fim = min(fim, out[i + 1][0][0])
             res.append((g[0][0], fim, " ".join(x[2] for x in g).rstrip(".,:!")))
+        return res
+
+    def grupos_karaoke(self):
+        """Grupos de até 4 palavras (≈20 caracteres) que entram no ritmo da fala; guarda as palavras com tempo."""
+        fracas = {"de", "para", "a", "o", "os", "as", "em", "um", "uma", "se", "no", "na", "do", "da", "dos", "ou", "que", "e", "com", "ao", "à", "é"}
+        out, at = [], []
+        for p in self.pw:
+            at.append(p); txt = " ".join(x[2] for x in at)
+            if p[2][-1] in ".,?:!" or ((len(at) >= 3 or len(txt) >= 18) and p[2].lower() not in fracas) or len(at) >= 4 or len(txt) >= 24:
+                out.append(at); at = []
+        if at: out.append(at)
+        res = []
+        for i, g in enumerate(out):
+            fim = g[-1][1] + 0.3
+            if i + 1 < len(out): fim = min(fim, out[i + 1][0][0])
+            res.append((g[0][0], fim, " ".join(x[2] for x in g).rstrip(".,:!"), g))
         return res
 
     def grupos_curtos(self):
@@ -430,6 +447,46 @@ def desenhar_contador(base, t, c):
     a, b = CACHE[k]
     if a: base.alpha_composite(a, (540 - a.width // 2, y))
     base.alpha_composite(b, (540 - b.width // 2, y + (65 if a else 0)))
+
+def _palavra(txt, ativa, esc):
+    k = ("KW", txt, ativa, round(esc, 2))
+    if k not in CACHE:
+        tam = int(66 * esc); f = F("Black", tam * 2)
+        bb = ImageDraw.Draw(Image.new("RGBA", (1, 1))).textbbox((0, 0), txt, font=f, stroke_width=12)
+        w, h = bb[2] - bb[0] + 40, bb[3] - bb[1] + 40
+        im = Image.new("RGBA", (w, h), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+        d.text((20 - bb[0], 20 - bb[1]), txt, font=f, fill=COBRE if ativa else BRANCO, stroke_width=12, stroke_fill=(10, 20, 22, 235))
+        CACHE[k] = com_sombra(im.resize((w // 2, h // 2), Image.LANCZOS), 8, 0.7)
+    return CACHE[k]
+
+def legenda_karaoke(base, leg, t, y, destaques=frozenset()):
+    """Legenda com ritmo: o grupo entra com um 'pop', a palavra falada fica em cobre e cresce no instante em que é dita;
+    palavras de destaque ficam em cobre o grupo inteiro."""
+    g = next((l for l in leg if l[0] <= t < l[1]), None)
+    if not g: return
+    palavras = g[3]; ativa = max([i for i, p in enumerate(palavras) if p[0] <= t] or [0])
+    entrada = out_back(clamp((t - g[0]) / 0.16)) if t - g[0] < 0.16 else 1.0
+    sprites = []
+    for i, (a, _b, txt) in enumerate(palavras):
+        txt = txt.rstrip(".,:!") if i == len(palavras) - 1 else txt
+        esc = 1.0
+        if i == ativa: esc = 1.0 + 0.14 * (1 - clamp((t - a) / 0.18)) + 0.04
+        dest = txt.strip(".,:;!?").lower() in destaques
+        sprites.append(_palavra(txt, i == ativa or dest, round(esc * 20) / 20))
+    esp = 14; linhas, at, lw = [], [], 0
+    for sp in sprites:
+        if at and lw + esp + sp.width > 940: linhas.append(at); at, lw = [], 0
+        at.append(sp); lw += sp.width + (esp if len(at) > 1 else 0)
+    linhas.append(at)
+    alt = sum(max(s_.height for s_ in l) for l in linhas) - 18 * (len(linhas) - 1)
+    bloco = Image.new("RGBA", (W, alt), (0, 0, 0, 0)); yy = 0
+    for l in linhas:
+        hmax = max(s_.height for s_ in l); larg = sum(s_.width for s_ in l) + esp * (len(l) - 1); x = (W - larg) // 2
+        for s_ in l: bloco.alpha_composite(s_, (x, yy + (hmax - s_.height) // 2)); x += s_.width + esp
+        yy += hmax - 18
+    if entrada < 0.999:
+        bloco = bloco.resize((max(1, int(W * entrada)), max(1, int(alt * entrada))), Image.BILINEAR)
+    base.alpha_composite(bloco, ((W - bloco.width) // 2, int(y - bloco.height / 2)))
 
 def legenda_frase(base, leg, t, y):
     txt = next((l[2] for l in leg if l[0] <= t < l[1]), "")
@@ -544,6 +601,7 @@ def quadro(P, B, fundo, fim_im, fim_els, rosto, t):
         else: q.alpha_composite(cam)
     y_leg = lay["legenda_cheio"] * (1 - k) + lay["legenda_split"] * k
     if P.r.get("legenda_estilo") == "frase": legenda_frase(q, P.leg, t, y_leg)
+    elif P.r.get("legenda_estilo") == "karaoke": legenda_karaoke(q, P.leg, t, y_leg, P.destaques)
     else: legenda(q, P.leg, t, y_leg, P.destaques)
     if P.r.get("marca_dagua"):
         k_ = ("MD", P.r.get("handle"))
@@ -578,7 +636,7 @@ def render(P, so_quadros=None):
     enc.stdin.close(); enc.wait(); dec.wait()
     ts = lambda t: f"{int(t // 3600):02d}:{int(t % 3600 // 60):02d}:{int(t % 60):02d},{int(t * 1000 % 1000):03d}"
     with open(os.path.join(P.saida, "legendas.srt"), "w", encoding="utf-8") as fh:
-        for i, (a, b, x) in enumerate(P.leg, 1): fh.write(f"{i}\n{ts(a)} --> {ts(b)}\n{x}\n\n")
+        for i, (a, b, x, *_r) in enumerate(P.leg, 1): fh.write(f"{i}\n{ts(a)} --> {ts(b)}\n{x}\n\n")
     print(f"ok: {saida} · {P.dur:.1f}s · velocidade {P.vel:.3f}")
 
 # ---------------- capa ----------------
