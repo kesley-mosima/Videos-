@@ -1,6 +1,6 @@
 {
-  "video": "fonte/IMG_4260.mov",
-  "palavras_csv": "palavras.csv",
+  "video": "fonte/IMG_4260-longo.MOV",
+  "palavras_csv": "palavras-longo.csv",
   "handle": "@mosimaadv",
   "frase_final": "Direito previdenciário explicado de forma simples",
   "cortes": [
@@ -21,11 +21,27 @@
       57.15
     ],
     [
-      74.6,
-      80.95
+      105.5,
+      117.9
+    ],
+    [
+      178.92,
+      189.7
+    ],
+    [
+      224.56,
+      233.4
+    ],
+    [
+      346.45,
+      354.06
+    ],
+    [
+      360.15,
+      363.9
     ]
   ],
-  "duracao_alvo": 60,
+  "duracao_alvo": 62,
   "pausa_max": 0.28,
   "cauda": 2.2,
   "legenda_estilo": "karaoke",
@@ -45,11 +61,22 @@
     "natureza",
     "principal",
     "sequela",
-    "dificultou"
+    "permanente",
+    "joelho",
+    "força",
+    "mão",
+    "movimento",
+    "inss",
+    "época",
+    "segurados",
+    "marcas",
+    "permanentes",
+    "saiba",
+    "mais"
   ],
   "nome": "auxilio-acidente-2-A",
   "saida": "saida-A",
-  "reusar_base": true,
+  "reusar_base": false,
   "marca_dagua": true,
   "_variacao": "A — editorial: rosto em tela cheia, chamadas acima da cabeça, legenda karaokê",
   "layout": {
@@ -79,7 +106,7 @@
   "blocos": [
     {
       "de": 9.15,
-      "ate": 80.95,
+      "ate": 363.9,
       "modo": "cheio",
       "elementos": [
         {
@@ -124,14 +151,83 @@
         },
         {
           "tipo": "manchete",
-          "texto": "É A SEQUELA QUE\nDIFICULTOU O TRABALHO",
+          "texto": "O QUE IMPORTA É A\nSEQUELA PERMANENTE",
+          "tam": 58,
+          "t": 114.7,
+          "fim": 117.9,
+          "y": 310
+        },
+        {
+          "tipo": "manchete",
+          "texto": "LIMITAÇÃO NO JOELHO",
+          "tam": 60,
+          "t": 179.6,
+          "fim": 181.1,
+          "y": 310
+        },
+        {
+          "tipo": "manchete",
+          "texto": "PERDA DE FORÇA NA MÃO",
+          "tam": 60,
+          "t": 181.2,
+          "fim": 182.7,
+          "y": 310
+        },
+        {
+          "tipo": "manchete",
+          "texto": "REDUÇÃO DE MOVIMENTO",
+          "tam": 60,
+          "t": 183.2,
+          "fim": 185.6,
+          "y": 310
+        },
+        {
+          "tipo": "manchete",
+          "texto": "QUE DIFICULTE O TRABALHO",
+          "tam": 58,
+          "t": 186.5,
+          "fim": 189.7,
+          "y": 310
+        },
+        {
+          "tipo": "manchete",
+          "texto": "VERIFIQUE SEU VÍNCULO\nCOM O INSS NA ÉPOCA",
           "tam": 56,
-          "t": 78.1,
+          "t": 224.9,
+          "fim": 229.6,
+          "y": 310
+        },
+        {
+          "tipo": "manchete",
+          "texto": "NEM TODO SEGURADO\nTEM DIREITO",
+          "tam": 60,
+          "t": 229.7,
+          "fim": 233.4,
+          "y": 310
+        },
+        {
+          "tipo": "manchete",
+          "texto": "MARCAS PERMANENTES\nNA VIDA PROFISSIONAL?",
+          "tam": 56,
+          "t": 349.4,
+          "fim": 352.5,
+          "y": 310
+        },
+        {
+          "tipo": "manchete",
+          "texto": "CLIQUE EM “SAIBA MAIS”",
+          "tam": 64,
+          "t": 352.6,
           "y": 310
         }
       ]
     }
   ],
   "crf": 16,
-  "preset": "slow"
+  "preset": "slow",
+  "correcoes": {
+    "NSS": "INSS",
+    "Mais.": "Mais",
+    "Saiba": "Saiba"
+  }
 }

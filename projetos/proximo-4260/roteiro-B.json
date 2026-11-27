@@ -1,6 +1,6 @@
 {
-  "video": "fonte/IMG_4260.mov",
-  "palavras_csv": "palavras.csv",
+  "video": "fonte/IMG_4260-longo.MOV",
+  "palavras_csv": "palavras-longo.csv",
   "handle": "@mosimaadv",
   "frase_final": "Direito previdenciário explicado de forma simples",
   "cortes": [
@@ -21,11 +21,27 @@
       57.15
     ],
     [
-      74.6,
-      80.95
+      105.5,
+      117.9
+    ],
+    [
+      178.92,
+      189.7
+    ],
+    [
+      224.56,
+      233.4
+    ],
+    [
+      346.45,
+      354.06
+    ],
+    [
+      360.15,
+      363.9
     ]
   ],
-  "duracao_alvo": 60,
+  "duracao_alvo": 62,
   "pausa_max": 0.28,
   "cauda": 2.2,
   "legenda_estilo": "karaoke",
@@ -45,7 +61,18 @@
     "natureza",
     "principal",
     "sequela",
-    "dificultou"
+    "permanente",
+    "joelho",
+    "força",
+    "mão",
+    "movimento",
+    "inss",
+    "época",
+    "segurados",
+    "marcas",
+    "permanentes",
+    "saiba",
+    "mais"
   ],
   "nome": "auxilio-acidente-2-B",
   "saida": "saida-B",
@@ -167,7 +194,7 @@
     },
     {
       "de": 45.75,
-      "ate": "fim",
+      "ate": 117.9,
       "modo": "split",
       "elementos": [
         {
@@ -198,27 +225,121 @@
           "titulo": "A SEQUELA",
           "texto": "é o que importa",
           "cor": "positivo",
-          "t": 74.8,
+          "t": 108.9,
           "x": 790,
           "y": 440
         },
         {
           "tipo": "check",
-          "texto": "Ficou uma sequela",
-          "t": 78.1,
-          "t_ok": 78.9,
+          "texto": "Sequela permanente",
+          "t": 114.8,
+          "t_ok": 115.6,
           "y": 590
         },
         {
           "tipo": "check",
           "texto": "Trabalho ficou mais difícil",
-          "t": 79.6,
-          "t_ok": 80.6,
+          "t": 116.0,
+          "t_ok": 117.0,
           "y": 690
+        }
+      ]
+    },
+    {
+      "de": 178.92,
+      "ate": 189.7,
+      "modo": "split",
+      "elementos": [
+        {
+          "tipo": "chip",
+          "texto": "EXEMPLOS DE SEQUELA",
+          "t": 178.95,
+          "y": 180
+        },
+        {
+          "tipo": "texto",
+          "estilo": "grande",
+          "texto": "LIMITAÇÃO NO JOELHO",
+          "t": 179.6,
+          "y": 310,
+          "anim": "pop"
+        },
+        {
+          "tipo": "texto",
+          "estilo": "grande",
+          "texto": "PERDA DE FORÇA NA MÃO",
+          "cor": "cobre",
+          "t": 181.2,
+          "y": 420,
+          "anim": "pop"
+        },
+        {
+          "tipo": "texto",
+          "estilo": "grande",
+          "texto": "REDUÇÃO DE MOVIMENTO",
+          "t": 183.2,
+          "y": 530,
+          "anim": "pop"
+        },
+        {
+          "tipo": "faixa",
+          "texto": "QUE DIFICULTE O TRABALHO",
+          "tam": 50,
+          "t": 186.5,
+          "y": 670,
+          "loop": "pulso",
+          "amp": 0.04
+        }
+      ]
+    },
+    {
+      "de": 224.56,
+      "ate": 233.4,
+      "modo": "cheio",
+      "punch": true,
+      "elementos": [
+        {
+          "tipo": "titulo",
+          "l1": "VERIFIQUE SEU VÍNCULO",
+          "l2": "COM O INSS",
+          "t": 224.9,
+          "fim": 229.6
+        },
+        {
+          "tipo": "titulo",
+          "l1": "NEM TODO SEGURADO",
+          "l2": "TEM DIREITO",
+          "t": 229.7
+        }
+      ]
+    },
+    {
+      "de": 346.45,
+      "ate": "fim",
+      "modo": "cheio",
+      "punch": true,
+      "elementos": [
+        {
+          "tipo": "titulo",
+          "l1": "MARCAS PERMANENTES",
+          "l2": "NA VIDA PROFISSIONAL?",
+          "t": 349.4,
+          "fim": 352.5
+        },
+        {
+          "tipo": "titulo",
+          "l1": "CLIQUE EM",
+          "l2": "“SAIBA MAIS”",
+          "t": 352.6
         }
       ]
     }
   ],
   "crf": 16,
-  "preset": "slow"
+  "preset": "slow",
+  "correcoes": {
+    "NSS": "INSS",
+    "Mais.": "Mais",
+    "Saiba": "Saiba"
+  }
 }
