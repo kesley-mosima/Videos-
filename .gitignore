@@ -1,0 +1,5 @@
+# vídeos brutos e intermediários (grandes demais para o GitHub)
+*.mov
+*.MOV
+**/saida/base.mkv
+__pycache__/
