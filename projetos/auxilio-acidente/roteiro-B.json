@@ -245,5 +245,7 @@
       ]
     }
   ],
-  "legenda_estilo": "karaoke"
+  "legenda_estilo": "karaoke",
+  "crf": 16,
+  "preset": "slow"
 }

@@ -4,7 +4,7 @@
   "video": "fonte/auxilio-acidente-bruto.mp4",
   "palavras_csv": "palavras.csv",
   "saida": "saida-A",
-  "reusar_base": true,
+  "reusar_base": false,
   "handle": "@mosimaadv",
   "frase_final": "Direito previdenciário explicado de forma simples",
   "marca_dagua": true,
@@ -166,5 +166,7 @@
     "auxílio",
     "mito",
     "especialista"
-  ]
+  ],
+  "crf": 16,
+  "preset": "slow"
 }
