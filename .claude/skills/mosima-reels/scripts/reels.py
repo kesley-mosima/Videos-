@@ -646,8 +646,8 @@ def render(P, so_quadros=None):
     dec = subprocess.Popen(["ffmpeg", "-loglevel", "error", "-i", base, "-f", "rawvideo", "-pix_fmt", "rgba", "-"], stdout=subprocess.PIPE)
     saida = os.path.join(P.saida, f"{nome}.mp4")
     enc = subprocess.Popen(["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgba", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
-                            "-i", base, "-map", "0:v", "-map", "1:a", "-c:v", "libx264", "-preset", "medium", "-crf", "19", "-pix_fmt", "yuv420p",
-                            "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", saida], stdin=subprocess.PIPE)
+                            "-i", base, "-map", "0:v", "-map", "1:a", "-c:v", "libx264", "-preset", P.r.get("preset", "medium"), "-crf", str(P.r.get("crf", 19)),
+                            "-profile:v", "high", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "256k", "-ar", "48000", "-shortest", "-movflags", "+faststart", saida], stdin=subprocess.PIPE)
     tam, n = W * H * 4, 0
     while True:
         buf = dec.stdout.read(tam)

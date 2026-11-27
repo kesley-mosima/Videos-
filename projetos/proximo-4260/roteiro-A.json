@@ -49,7 +49,7 @@
   ],
   "nome": "auxilio-acidente-2-A",
   "saida": "saida-A",
-  "reusar_base": false,
+  "reusar_base": true,
   "marca_dagua": true,
   "_variacao": "A — editorial: rosto em tela cheia, chamadas acima da cabeça, legenda karaokê",
   "layout": {
@@ -131,5 +131,7 @@
         }
       ]
     }
-  ]
+  ],
+  "crf": 16,
+  "preset": "slow"
 }
