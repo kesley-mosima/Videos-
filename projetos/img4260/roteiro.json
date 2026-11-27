@@ -6,56 +6,235 @@
   "saida": "saida",
   "handle": "@mosimaadv",
   "frase_final": "Direito previdenciário explicado de forma simples",
-
-  "cortes": [[1.10, 7.55], [17.00, 24.30], [45.75, 49.40], [53.50, 56.60], [57.20, 63.70]],
+  "cortes": [
+    [
+      9.1,
+      15.9
+    ],
+    [
+      25.1,
+      32.75
+    ],
+    [
+      45.75,
+      49.4
+    ],
+    [
+      53.5,
+      56.6
+    ],
+    [
+      74.65,
+      80.8
+    ]
+  ],
   "duracao_alvo": 74,
-  "pausa_max": 0.30,
+  "pausa_max": 0.3,
   "vel_max": 1.08,
   "cauda": 1.6,
-  "correcoes_indice": {"61": "auxílio-", "62": "acidente"},
-
+  "correcoes_indice": {
+    "84": "auxílio-",
+    "85": "acidente"
+  },
   "capa": {
     "instante": 7.6,
     "selo": "AUXÍLIO-ACIDENTE · INSS",
     "linha1": "ACIDENTE FORA",
     "linha2": "DO TRABALHO?",
     "subtitulo": "Você ainda pode ter direito ao benefício",
-    "nome": "[NOME DA ADVOGADA]",
-    "registro": "OAB/SC nº [00.000]  ·  Moraes Silva & Massimino Advogados"
+    "nome": "Dra. Jéssica",
+    "registro": "Advogada  ·  Moraes Silva & Massimino Advogados"
   },
-
   "blocos": [
-    {"de": 1.10, "ate": 17.00, "modo": "cheio", "elementos": [
-      {"tipo": "titulo", "l1": "SOFREU UM", "l2": "ACIDENTE?", "t": 1.2, "fim": 5.95},
-      {"tipo": "titulo", "l1": "FICOU COM", "l2": "LIMITAÇÃO?", "cor": "branco", "t": 6.0}
-    ]},
-    {"de": 17.00, "ate": 45.75, "modo": "split", "elementos": [
-      {"tipo": "chip", "texto": "AUXÍLIO-ACIDENTE", "t": 17.1, "y": 180},
-      {"tipo": "icone", "nome": "casa", "t": 17.7, "x": 250, "y": 400},
-      {"tipo": "texto", "estilo": "destaque", "texto": "FORA DA", "t": 19.2, "x": 640, "y": 345, "anim": "dir"},
-      {"tipo": "texto", "estilo": "destaque", "texto": "EMPRESA", "t": 19.6, "x": 640, "y": 430, "anim": "dir"},
-      {"tipo": "texto", "estilo": "titulo", "texto": "NÃO ELIMINA", "t": 20.4, "y": 590},
-      {"tipo": "texto", "estilo": "nota", "texto": "a possibilidade de receber o benefício", "t": 22.0, "y": 700, "anim": "fade"}
-    ]},
-    {"de": 45.75, "ate": 53.50, "modo": "split", "elementos": [
-      {"tipo": "chip", "texto": "ACIDENTE DE QUALQUER NATUREZA", "t": 45.8, "y": 180},
-      {"tipo": "tile", "rotulo": "Trânsito", "icone": "alerta", "t": 46.3, "x": 200, "y": 420},
-      {"tipo": "tile", "rotulo": "Em casa", "icone": "casa", "t": 46.6, "x": 540, "y": 420},
-      {"tipo": "tile", "rotulo": "No trabalho", "icone": "documento", "t": 46.9, "x": 880, "y": 420},
-      {"tipo": "selo", "ok": true, "t": 48.4, "x": 315, "y": 300},
-      {"tipo": "selo", "ok": true, "t": 48.55, "x": 655, "y": 300},
-      {"tipo": "selo", "ok": true, "t": 48.7, "x": 995, "y": 300},
-      {"tipo": "texto", "estilo": "nota", "texto": "art. 86 da Lei 8.213/91", "t": 48.8, "y": 700, "anim": "fade"}
-    ]},
-    {"de": 53.50, "ate": 57.20, "modo": "cheio", "elementos": [
-      {"tipo": "titulo", "l1": "NÃO IMPORTA", "l2": "ONDE FOI", "t": 53.6}
-    ]},
-    {"de": 57.20, "ate": "fim", "modo": "split", "elementos": [
-      {"tipo": "chip", "texto": "O QUE IMPORTA", "t": 57.3, "y": 180},
-      {"tipo": "texto", "estilo": "destaque", "texto": "1 · Recuperação", "t": 58.2, "y": 320, "anim": "esq"},
-      {"tipo": "texto", "estilo": "destaque", "texto": "2 · Sequela definitiva", "t": 60.5, "y": 440, "anim": "esq"},
-      {"tipo": "texto", "estilo": "destaque", "texto": "3 · Trabalho mais difícil", "t": 62.4, "y": 560, "anim": "esq"},
-      {"tipo": "texto", "estilo": "nota", "texto": "redução da capacidade para o trabalho habitual", "t": 62.9, "y": 690, "anim": "fade"}
-    ]}
+    {
+      "de": 9.1,
+      "ate": 25.1,
+      "modo": "cheio",
+      "elementos": [
+        {
+          "tipo": "titulo",
+          "l1": "SOFREU UM",
+          "l2": "ACIDENTE?",
+          "t": 9.2,
+          "fim": 14.2
+        },
+        {
+          "tipo": "titulo",
+          "l1": "FICOU COM",
+          "l2": "DIFICULDADE?",
+          "cor": "branco",
+          "t": 14.25
+        }
+      ]
+    },
+    {
+      "de": 25.1,
+      "ate": 45.75,
+      "modo": "split",
+      "elementos": [
+        {
+          "tipo": "chip",
+          "texto": "AUXÍLIO-ACIDENTE",
+          "t": 25.2,
+          "y": 180
+        },
+        {
+          "tipo": "icone",
+          "nome": "casa",
+          "t": 26.0,
+          "x": 250,
+          "y": 400
+        },
+        {
+          "tipo": "texto",
+          "estilo": "destaque",
+          "texto": "FORA DA",
+          "t": 28.0,
+          "x": 640,
+          "y": 345,
+          "anim": "dir"
+        },
+        {
+          "tipo": "texto",
+          "estilo": "destaque",
+          "texto": "EMPRESA",
+          "t": 28.4,
+          "x": 640,
+          "y": 430,
+          "anim": "dir"
+        },
+        {
+          "tipo": "texto",
+          "estilo": "titulo",
+          "texto": "NÃO ELIMINA",
+          "t": 29.1,
+          "y": 590
+        },
+        {
+          "tipo": "texto",
+          "estilo": "nota",
+          "texto": "o direito ao benefício",
+          "t": 30.8,
+          "y": 700,
+          "anim": "fade"
+        }
+      ]
+    },
+    {
+      "de": 45.75,
+      "ate": 53.5,
+      "modo": "split",
+      "elementos": [
+        {
+          "tipo": "chip",
+          "texto": "ACIDENTE DE QUALQUER NATUREZA",
+          "t": 45.8,
+          "y": 180
+        },
+        {
+          "tipo": "tile",
+          "rotulo": "Trânsito",
+          "icone": "alerta",
+          "t": 46.3,
+          "x": 200,
+          "y": 420
+        },
+        {
+          "tipo": "tile",
+          "rotulo": "Em casa",
+          "icone": "casa",
+          "t": 46.6,
+          "x": 540,
+          "y": 420
+        },
+        {
+          "tipo": "tile",
+          "rotulo": "No trabalho",
+          "icone": "documento",
+          "t": 46.9,
+          "x": 880,
+          "y": 420
+        },
+        {
+          "tipo": "selo",
+          "ok": true,
+          "t": 48.4,
+          "x": 315,
+          "y": 300
+        },
+        {
+          "tipo": "selo",
+          "ok": true,
+          "t": 48.55,
+          "x": 655,
+          "y": 300
+        },
+        {
+          "tipo": "selo",
+          "ok": true,
+          "t": 48.7,
+          "x": 995,
+          "y": 300
+        },
+        {
+          "tipo": "texto",
+          "estilo": "nota",
+          "texto": "art. 86 da Lei 8.213/91",
+          "t": 48.8,
+          "y": 700,
+          "anim": "fade"
+        }
+      ]
+    },
+    {
+      "de": 53.5,
+      "ate": 74.65,
+      "modo": "cheio",
+      "elementos": [
+        {
+          "tipo": "titulo",
+          "l1": "NÃO IMPORTA",
+          "l2": "ONDE FOI",
+          "t": 53.6
+        }
+      ]
+    },
+    {
+      "de": 74.65,
+      "ate": "fim",
+      "modo": "split",
+      "elementos": [
+        {
+          "tipo": "chip",
+          "texto": "O QUE IMPORTA",
+          "t": 74.8,
+          "y": 180
+        },
+        {
+          "tipo": "texto",
+          "estilo": "destaque",
+          "texto": "1 · Recuperação",
+          "t": 76.6,
+          "y": 330,
+          "anim": "esq"
+        },
+        {
+          "tipo": "texto",
+          "estilo": "destaque",
+          "texto": "2 · Sequela definitiva",
+          "t": 78.6,
+          "y": 460,
+          "anim": "esq"
+        },
+        {
+          "tipo": "texto",
+          "estilo": "destaque",
+          "texto": "3 · Trabalho mais difícil",
+          "t": 79.6,
+          "y": 590,
+          "anim": "esq"
+        }
+      ]
+    }
   ]
 }
